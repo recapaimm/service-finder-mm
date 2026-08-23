@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="my">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>အနီးအနား ဝန်ဆောင်မှု</title>
 
@@ -11,63 +17,404 @@
         content="သင့်အနီးအနားရှိ ဝန်ဆောင်မှုများကို အလွယ်တကူ ရှာဖွေပါ။"
     >
 
+    <!-- Existing CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/responsive.css">
+
+
+    <!-- Account button CSS -->
+    <style>
+
+        /* =====================================
+           HEADER ACCOUNT
+        ===================================== */
+
+        .header-inner {
+            position: relative;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+
+        .account-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 40px;
+
+            padding: 8px 13px;
+
+            border: 1px solid #2563eb;
+            border-radius: 10px;
+
+            background: #2563eb;
+            color: #ffffff;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            text-decoration: none;
+
+            white-space: nowrap;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .account-btn:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+
+
+        .logout-btn {
+            display: none;
+
+            min-height: 40px;
+
+            padding: 8px 13px;
+
+            border: 1px solid #dc2626;
+            border-radius: 10px;
+
+            background: #ffffff;
+            color: #dc2626;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+        }
+
+
+        .logout-btn:hover {
+            background: #dc2626;
+            color: #ffffff;
+        }
+
+
+        .user-name {
+            display: none;
+
+            max-width: 120px;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        /* =====================================
+           MOBILE HEADER
+        ===================================== */
+
+        @media (max-width: 600px) {
+
+            .header-inner {
+
+                width: calc(100% - 20px);
+
+                min-height: 60px;
+
+                gap: 6px;
+
+            }
+
+
+            .logo {
+
+                min-width: 0;
+
+                gap: 6px;
+
+                font-size: 14px;
+
+            }
+
+
+            .logo-icon {
+
+                width: 34px;
+                height: 34px;
+
+                flex-shrink: 0;
+
+            }
+
+
+            .logo > span:last-child {
+
+                max-width: 120px;
+
+                overflow: hidden;
+
+                text-overflow: ellipsis;
+
+                white-space: nowrap;
+
+            }
+
+
+            .header-actions {
+
+                gap: 5px;
+
+            }
+
+
+            .location-header-btn {
+
+                padding: 7px 9px;
+
+                font-size: 12px;
+
+            }
+
+
+            .location-header-btn span {
+
+                display: none;
+
+            }
+
+
+            .account-btn {
+
+                padding: 7px 9px;
+
+                min-height: 36px;
+
+                font-size: 12px;
+
+            }
+
+
+            .user-name {
+
+                max-width: 65px;
+
+                font-size: 11px;
+
+            }
+
+
+            .logout-btn {
+
+                padding: 7px 8px;
+
+                min-height: 36px;
+
+                font-size: 11px;
+
+            }
+
+        }
+
+
+        /* =====================================
+           SEARCH ACCOUNT REMOVE
+        ===================================== */
+
+        .search-account-btn {
+
+            display: none !important;
+
+        }
+
+
+        /* =====================================
+           LOGIN USER AREA
+        ===================================== */
+
+        .logged-in-area {
+
+            display: none;
+
+            align-items: center;
+
+            gap: 6px;
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- Header -->
+
+    <!-- =====================================
+         HEADER
+    ===================================== -->
+
     <header class="header">
 
         <div class="header-inner">
 
-            <a href="index.html" class="logo">
-                <span class="logo-icon">🔧</span>
-                <span>အနီးအနားဝန်ဆောင်မှု</span>
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+
+                <span class="logo-icon">
+                    🔧
+                </span>
+
+                <span>
+                    အနီးအနားဝန်ဆောင်မှု
+                </span>
+
             </a>
 
-            <button
-                class="location-header-btn"
-                id="headerLocationBtn"
-            >
-                📍 <span>တည်နေရာ</span>
-            </button>
-<a href="login.html" class="account-header-btn">
-    👤 <span>အကောင့်ဝင်</span>
-</a>
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+
+                <!-- LOCATION -->
+
+                <button
+                    class="location-header-btn"
+                    id="headerLocationBtn"
+                    type="button"
+                >
+
+                    📍
+                    <span>
+                        တည်နေရာ
+                    </span>
+
+                </button>
+
+
+                <!-- NOT LOGGED IN -->
+
+                <a
+                    href="login.html"
+                    class="account-btn"
+                    id="loginHeaderBtn"
+                >
+
+                    👤
+                    <span>
+                        အကောင့်ဝင်
+                    </span>
+
+                </a>
+
+
+                <!-- LOGGED IN -->
+
+                <div
+                    class="logged-in-area"
+                    id="loggedInArea"
+                >
+
+                    <span
+                        class="user-name"
+                        id="headerUserName"
+                    ></span>
+
+
+                    <button
+                        type="button"
+                        class="logout-btn"
+                        id="logoutHeaderBtn"
+                    >
+
+                        🚪 ထွက်မယ်
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
         </div>
 
     </header>
 
 
-    <!-- Hero -->
+
+    <!-- =====================================
+         MAIN
+    ===================================== -->
+
     <main>
+
+
+        <!-- =================================
+             HERO
+        ================================= -->
 
         <section class="hero">
 
             <div class="hero-content">
 
+
                 <span class="hero-badge">
-                    📍 သင့်အနီးအနားမှာ ရှာဖွေပါ
+
+                    📍
+                    သင့်အနီးအနားမှာ ရှာဖွေပါ
+
                 </span>
 
+
                 <h1>
-                    လိုအပ်တဲ့ ဝန်ဆောင်မှုကို<br>
-                    <strong>အလွယ်တကူ ရှာပါ</strong>
+
+                    လိုအပ်တဲ့ ဝန်ဆောင်မှုကို
+
+                    <br>
+
+                    <strong>
+                        အလွယ်တကူ ရှာပါ
+                    </strong>
+
                 </h1>
 
+
                 <p>
+
                     သင့်အနီးအနားရှိ ဆိုင်များနှင့်
                     ဝန်ဆောင်မှုပေးသူများကို ရှာဖွေပါ။
+
                 </p>
 
 
-                <!-- Search -->
+
+                <!-- SEARCH -->
+
                 <div class="search-box">
 
-                    <span class="search-icon">🔍</span>
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
 
                     <input
                         type="search"
@@ -76,54 +423,109 @@
                         autocomplete="off"
                     >
 
-                    <button id="searchBtn">
+
+                    <button
+                        id="searchBtn"
+                        type="button"
+                    >
+
                         ရှာမယ်
+
                     </button>
-                    <a href="login.html" class="account-header-btn">
-    👤 <span>အကောင့်ဝင်</span>
-</a>
 
                 </div>
 
 
+
+                <!-- LOCATION -->
+
                 <button
                     class="location-btn"
                     id="locationBtn"
+                    type="button"
                 >
-                    📍 ကျွန်ုပ်၏တည်နေရာကို အသုံးပြုမယ်
+
+                    📍
+                    ကျွန်ုပ်၏တည်နေရာကို အသုံးပြုမယ်
+
                 </button>
+
 
                 <p
                     class="location-status"
                     id="locationStatus"
                 ></p>
 
+
+                <!-- LOGIN NOTICE -->
+
+                <div
+                    id="loginNotice"
+                    style="
+                        margin-top:12px;
+                        text-align:center;
+                        font-size:13px;
+                        color:#667085;
+                    "
+                >
+
+                    🔐 ဝန်ဆောင်မှုပေးသူအဖြစ်
+                    စာရင်းသွင်းရန်
+                    <a
+                        href="login.html"
+                        style="
+                            color:#2563eb;
+                            font-weight:700;
+                        "
+                    >
+                        အကောင့်ဖွင့်ပါ
+                    </a>
+
+                </div>
+
             </div>
 
         </section>
 
 
-        <!-- Categories -->
+
+        <!-- =================================
+             CATEGORIES
+        ================================= -->
+
         <section class="section">
+
 
             <div class="section-heading">
 
+
                 <div>
+
                     <span class="section-label">
                         ဝန်ဆောင်မှုများ
                     </span>
 
-                    <h2>အမျိုးအစားရွေးပါ</h2>
+
+                    <h2>
+                        အမျိုးအစားရွေးပါ
+                    </h2>
+
                 </div>
+
 
                 <button
                     class="view-all-btn"
                     id="viewAllBtn"
+                    type="button"
                 >
+
                     အားလုံးကြည့်မယ် →
+
                 </button>
 
+
             </div>
+
 
 
             <div
@@ -131,74 +533,174 @@
                 id="categoryGrid"
             >
 
-                <button class="category-card" data-category="ဖုန်း">
+
+                <button
+                    class="category-card"
+                    data-category="ဖုန်း"
+                    type="button"
+                >
+
                     <span>📱</span>
-                    <strong>ဖုန်းပြင်</strong>
+
+                    <strong>
+                        ဖုန်းပြင်
+                    </strong>
+
                 </button>
 
-                <button class="category-card" data-category="ကွန်ပျူတာ">
+
+                <button
+                    class="category-card"
+                    data-category="ကွန်ပျူတာ"
+                    type="button"
+                >
+
                     <span>💻</span>
-                    <strong>ကွန်ပျူတာ</strong>
+
+                    <strong>
+                        ကွန်ပျူတာ
+                    </strong>
+
                 </button>
 
-                <button class="category-card" data-category="ဆိုင်ကယ်">
+
+                <button
+                    class="category-card"
+                    data-category="ဆိုင်ကယ်"
+                    type="button"
+                >
+
                     <span>🏍️</span>
-                    <strong>ဆိုင်ကယ်ပြင်</strong>
+
+                    <strong>
+                        ဆိုင်ကယ်ပြင်
+                    </strong>
+
                 </button>
 
-                <button class="category-card" data-category="ကား">
+
+                <button
+                    class="category-card"
+                    data-category="ကား"
+                    type="button"
+                >
+
                     <span>🚗</span>
-                    <strong>ကားပြင်</strong>
+
+                    <strong>
+                        ကားပြင်
+                    </strong>
+
                 </button>
 
-                <button class="category-card" data-category="အဲကွန်း">
+
+                <button
+                    class="category-card"
+                    data-category="အဲကွန်း"
+                    type="button"
+                >
+
                     <span>❄️</span>
-                    <strong>အဲကွန်း</strong>
+
+                    <strong>
+                        အဲကွန်း
+                    </strong>
+
                 </button>
 
-                <button class="category-card" data-category="လျှပ်စစ်">
+
+                <button
+                    class="category-card"
+                    data-category="လျှပ်စစ်"
+                    type="button"
+                >
+
                     <span>⚡</span>
-                    <strong>လျှပ်စစ်</strong>
+
+                    <strong>
+                        လျှပ်စစ်
+                    </strong>
+
                 </button>
 
-                <button class="category-card" data-category="ရေပိုက်">
+
+                <button
+                    class="category-card"
+                    data-category="ရေပိုက်"
+                    type="button"
+                >
+
                     <span>🚰</span>
-                    <strong>ရေပိုက်</strong>
+
+                    <strong>
+                        ရေပိုက်
+                    </strong>
+
                 </button>
 
-                <button class="category-card" data-category="အိမ်ပြုပြင်">
+
+                <button
+                    class="category-card"
+                    data-category="အိမ်ပြုပြင်"
+                    type="button"
+                >
+
                     <span>🏠</span>
-                    <strong>အိမ်ပြုပြင်</strong>
+
+                    <strong>
+                        အိမ်ပြုပြင်
+                    </strong>
+
                 </button>
+
 
             </div>
 
         </section>
 
 
-        <!-- Services -->
-        <section class="section services-section">
+
+        <!-- =================================
+             SERVICES
+        ================================= -->
+
+        <section
+            class="section services-section"
+        >
+
 
             <div class="section-heading">
 
+
                 <div>
+
                     <span class="section-label">
                         အနီးအနားရှိ
                     </span>
 
+
                     <h2 id="serviceTitle">
-                        လူကြိုက်များသော ဝန်ဆောင်မှုများ
+
+                        လူကြိုက်များသော
+                        ဝန်ဆောင်မှုများ
+
                     </h2>
+
                 </div>
+
 
                 <span
                     class="result-count"
                     id="resultCount"
                 >
+
                     0 ခု
+
                 </span>
 
+
             </div>
+
 
 
             <div
@@ -207,7 +709,10 @@
             >
 
                 <div class="loading">
-                    ဝန်ဆောင်မှုများ ရှာဖွေနေပါသည်...
+
+                    ဝန်ဆောင်မှုများ
+                    ရှာဖွေနေပါသည်...
+
                 </div>
 
             </div>
@@ -215,83 +720,320 @@
         </section>
 
 
-        <!-- Empty Result -->
+
+        <!-- =================================
+             EMPTY RESULT
+        ================================= -->
+
         <section
             class="empty-state hidden"
             id="emptyState"
         >
 
-            <div class="empty-icon">🔎</div>
 
-            <h3>ဝန်ဆောင်မှု မတွေ့ပါ</h3>
+            <div class="empty-icon">
+                🔎
+            </div>
+
+
+            <h3>
+                ဝန်ဆောင်မှု မတွေ့ပါ
+            </h3>
+
 
             <p>
+
                 ရှာဖွေမှု စကားလုံးကို ပြောင်းပြီး
                 ထပ်မံရှာကြည့်ပါ။
+
             </p>
 
-            <button id="resetSearchBtn">
+
+            <button
+                id="resetSearchBtn"
+                type="button"
+            >
+
                 အားလုံးပြန်ကြည့်မယ်
+
             </button>
+
 
         </section>
 
     </main>
 
 
-    <!-- Detail Modal -->
+
+    <!-- =====================================
+         DETAIL MODAL
+    ===================================== -->
+
     <div
         class="modal hidden"
         id="serviceModal"
     >
 
-        <div class="modal-overlay" id="modalOverlay"></div>
+
+        <div
+            class="modal-overlay"
+            id="modalOverlay"
+        ></div>
+
 
         <div class="modal-content">
+
 
             <button
                 class="modal-close"
                 id="modalClose"
+                type="button"
                 aria-label="ပိတ်မည်"
             >
+
                 ×
+
             </button>
 
+
             <div id="modalBody"></div>
+
 
         </div>
 
     </div>
 
 
-    <!-- Footer -->
+
+    <!-- =====================================
+         FOOTER
+    ===================================== -->
+
     <footer class="footer">
+
 
         <div class="footer-inner">
 
+
             <div>
-                <strong>🔧 အနီးအနားဝန်ဆောင်မှု</strong>
+
+                <strong>
+                    🔧 အနီးအနားဝန်ဆောင်မှု
+                </strong>
+
 
                 <p>
+
                     လိုအပ်တဲ့ဝန်ဆောင်မှုကို
                     လွယ်လွယ်ကူကူရှာဖွေပါ။
+
                 </p>
+
             </div>
 
+
             <p class="copyright">
-                © 2026 အနီးအနားဝန်ဆောင်မှု
+
+                © 2026
+                အနီးအနားဝန်ဆောင်မှု
+
             </p>
+
 
         </div>
 
     </footer>
 
 
-    <!-- JavaScript -->
+
+    <!-- =====================================
+         SUPABASE
+    ===================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+
+    <!-- =====================================
+         AUTH
+    ===================================== -->
+
+    <script src="js/auth.js"></script>
+
+
+    <!-- =====================================
+         EXISTING APP JAVASCRIPT
+    ===================================== -->
+
     <script src="js/services.js"></script>
+
     <script src="js/search.js"></script>
+
     <script src="js/location.js"></script>
+
     <script src="js/app.js"></script>
 
+
+
+    <!-- =====================================
+         HEADER AUTH SCRIPT
+    ===================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            async function () {
+
+
+                const loginHeaderBtn =
+                    document.getElementById(
+                        "loginHeaderBtn"
+                    );
+
+
+                const loggedInArea =
+                    document.getElementById(
+                        "loggedInArea"
+                    );
+
+
+                const headerUserName =
+                    document.getElementById(
+                        "headerUserName"
+                    );
+
+
+                const logoutHeaderBtn =
+                    document.getElementById(
+                        "logoutHeaderBtn"
+                    );
+
+
+                const loginNotice =
+                    document.getElementById(
+                        "loginNotice"
+                    );
+
+
+                try {
+
+
+                    const user =
+                        await getCurrentUser();
+
+
+                    /* =========================
+                       NOT LOGGED IN
+                    ========================= */
+
+                    if (!user) {
+
+                        loginHeaderBtn.style.display =
+                            "inline-flex";
+
+                        loggedInArea.style.display =
+                            "none";
+
+                        loginNotice.style.display =
+                            "block";
+
+                        return;
+
+                    }
+
+
+                    /* =========================
+                       LOGGED IN
+                    ========================= */
+
+                    loginHeaderBtn.style.display =
+                        "none";
+
+
+                    loggedInArea.style.display =
+                        "flex";
+
+
+                    loginNotice.style.display =
+                        "none";
+
+
+                    const fullName =
+                        user.user_metadata?.full_name;
+
+
+                    headerUserName.textContent =
+                        "👤 " +
+                        (
+                            fullName ||
+                            user.email ||
+                            "အသုံးပြုသူ"
+                        );
+
+
+                    headerUserName.style.display =
+                        "inline-block";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Auth check error:",
+                        error
+                    );
+
+                }
+
+
+                /* =========================
+                   LOGOUT
+                ========================= */
+
+                logoutHeaderBtn.addEventListener(
+                    "click",
+                    async function () {
+
+
+                        logoutHeaderBtn.disabled =
+                            true;
+
+
+                        logoutHeaderBtn.textContent =
+                            "ထွက်နေပါပြီ...";
+
+
+                        try {
+
+                            await logoutUser();
+
+                        } catch (error) {
+
+                            console.error(
+                                "Logout error:",
+                                error
+                            );
+
+
+                            logoutHeaderBtn.disabled =
+                                false;
+
+
+                            logoutHeaderBtn.textContent =
+                                "🚪 ထွက်မယ်";
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+
 </body>
-              </html>
+
+                </html>
