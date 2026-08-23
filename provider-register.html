@@ -233,4 +233,193 @@
 
                         <option value="motorcycle">
                             🛵 ဆိုင်ကယ်ပြင်ဆိုင်
-                        </option
+                        </option>
+
+                        <option value="car">
+                            🚗 ကားပြင်ဆိုင်
+                        </option>
+
+                        <option value="aircon">
+                            ❄️ အဲကွန်းဝန်ဆောင်မှု
+                        </option>
+
+                        <option value="electrical">
+                            ⚡ လျှပ်စစ်ဝန်ဆောင်မှု
+                        </option>
+
+                        <option value="plumbing">
+                            🚰 ရေပိုက်/ပိုက်ပြင်
+                        </option>
+
+                        <option value="home">
+                            🏠 အိမ်ပြုပြင်
+                        </option>
+
+                        <option value="other">
+                            🛠️ အခြားဝန်ဆောင်မှု
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- =====================
+                     ADDRESS
+                ====================== -->
+
+                <div class="provider-form-group">
+
+                    <label for="providerAddress">
+                        ဆိုင်လိပ်စာ
+                    </label>
+
+                    <textarea
+                        id="providerAddress"
+                        name="address"
+                        rows="4"
+                        placeholder="ဥပမာ - မန္တလေး၊ ချမ်းအေးသာစံ၊ ........"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- =====================
+                     PASSWORD
+                ====================== -->
+
+                <div class="provider-form-group">
+
+                    <label for="providerPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="providerPassword"
+                        name="password"
+                        placeholder="အနည်းဆုံး 6 လုံး"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =====================
+                     CONFIRM PASSWORD
+                ====================== -->
+
+                <div class="provider-form-group">
+
+                    <label for="providerConfirmPassword">
+                        Password ပြန်ထည့်ပါ
+                    </label>
+
+                    <input
+                        type="password"
+                        id="providerConfirmPassword"
+                        name="confirmPassword"
+                        placeholder="Password ပြန်ထည့်ပါ"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =====================
+                     SUBMIT BUTTON
+                ====================== -->
+
+                <button
+                    type="submit"
+                    id="providerRegisterBtn"
+                    class="provider-register-submit"
+                >
+
+                    🏪 ဆိုင်စာရင်းသွင်းမယ်
+
+                </button>
+
+
+            </form>
+
+
+            <!-- =========================
+                 RESULT MESSAGE
+            ========================== -->
+
+            <div
+                id="providerRegisterMessage"
+                class="provider-auth-message"
+                role="alert"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- =========================
+                 LOGIN
+            ========================== -->
+
+            <div class="provider-login-link">
+
+                <span>
+                    အကောင့်ရှိပြီးသားလား?
+                </span>
+
+                <a href="login.html">
+                    ဆိုင်သမားဝင်ရန်
+                </a>
+
+            </div>
+
+
+            <!-- =========================
+                 HOME
+            ========================== -->
+
+            <a
+                href="index.html"
+                class="provider-back-home"
+            >
+
+                ← ပင်မစာမျက်နှာသို့ ပြန်မယ်
+
+            </a>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =================================
+         SUPABASE
+    ================================= -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+
+    <!-- =================================
+         SUPABASE AUTH CONFIG
+    ================================= -->
+
+    <script src="js/auth.js"></script>
+
+
+    <!-- =================================
+         PROVIDER REGISTRATION
+    ================================= -->
+
+    <script src="js/provider.js"></script>
+
+
+</body>
+
+    </html>
