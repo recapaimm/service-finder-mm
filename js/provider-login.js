@@ -1,238 +1,290 @@
-// ========================================
-// PROVIDER LOGIN
-// ========================================
+document.addEventListener(
+"DOMContentLoaded",
+function(){
 
-document.addEventListener("DOMContentLoaded", function () {
+const form =
+document.getElementById("providerRegisterForm");
 
-    const form = document.getElementById("providerLoginForm");
-    const button = document.getElementById("providerLoginBtn");
-    const message = document.getElementById("providerLoginMessage");
 
-    if (!form) return;
+const btn =
+document.getElementById("providerRegisterBtn");
 
 
-    // ========================================
-    // SHOW MESSAGE
-    // ========================================
+const message =
+document.getElementById("providerRegisterMessage");
 
-    function showMessage(text, type = "error") {
 
-        message.textContent = text;
 
-        message.className =
-            "provider-auth-message show " + type;
-    }
+function showMessage(text,type){
 
+message.textContent = text;
 
-    // ========================================
-    // LOGIN
-    // ========================================
+message.className =
+"provider-auth-message show " + type;
 
-    form.addEventListener("submit", async function (event) {
+}
 
-        event.preventDefault();
 
 
-        const email =
-            document
-                .getElementById("providerEmail")
-                .value
-                .trim();
+if(!form) return;
 
-        const password =
-            document
-                .getElementById("providerPassword")
-                .value;
 
 
-        // Validation
+form.addEventListener(
+"submit",
+async function(e){
 
-        if (!email || !password) {
+e.preventDefault();
 
-            showMessage(
-                "Email နဲ့ Password ဖြည့်ပေးပါ။",
-                "error"
-            );
 
-            return;
-        }
 
+const fullName =
+document.getElementById(
+"providerFullName"
+).value.trim();
 
-        button.disabled = true;
 
-        button.innerHTML = "ဝင်နေသည်...";
 
+const shopName =
+document.getElementById(
+"providerShopName"
+).value.trim();
 
-        try {
 
-            // ========================================
-            // SUPABASE LOGIN
-            // ========================================
 
-            const data =
-                await loginUser(email, password);
+const phone =
+document.getElementById(
+"providerPhone"
+).value.trim();
 
 
-            const user = data.user;
 
+const email =
+document.getElementById(
+"providerEmail"
+).value.trim();
 
-            if (!user) {
 
-                throw new Error(
-                    "Account ဝင်ရောက်၍ မရပါ။"
-                );
 
-            }
+const category =
+document.getElementById(
+"providerCategory"
+).value;
 
 
-            // ========================================
-            // GET PROFILE
-            // ========================================
 
-            const {
-                data: profile,
-                error: profileError
-            } =
-                await supabaseClient
-                    .from("profiles")
-                    .select(
-                        "id, full_name, role, status, shop_name"
-                    )
-                    .eq("id", user.id)
-                    .maybeSingle();
+const address =
+document.getElementById(
+"providerAddress"
+).value.trim();
 
 
-            if (profileError) {
 
-                console.error(
-                    "Profile error:",
-                    profileError
-                );
+const password =
+document.getElementById(
+"providerPassword"
+).value;
 
-            }
 
 
-            // ========================================
-            // CHECK PROVIDER
-            // ========================================
+const confirmPassword =
+document.getElementById(
+"providerConfirmPassword"
+).value;
 
-            if (
-                profile &&
-                profile.role !== "provider"
-            ) {
 
-                await supabaseClient.auth.signOut();
 
-                throw new Error(
-                    "ဒီ Account သည် ဆိုင်သမား Account မဟုတ်ပါ။"
-                );
+if(
+!fullName ||
+!shopName ||
+!phone ||
+!email ||
+!category ||
+!address ||
+!password
+){
 
-            }
+showMessage(
+"အချက်အလက်အားလုံးဖြည့်ပါ",
+"error"
+);
 
+return;
 
-            // ========================================
-            // PENDING
-            // ========================================
+}
 
-            if (
-                profile &&
-                profile.status === "pending"
-            ) {
 
-                showMessage(
-                    "Login အောင်မြင်ပါပြီ။ သင့်ဆိုင်ကို Admin စစ်ဆေးနေဆဲဖြစ်ပါတယ်။",
-                    "success"
-                );
 
+if(password.length < 6){
 
-                setTimeout(function () {
+showMessage(
+"Password အနည်းဆုံး 6 လုံးထားပါ",
+"error"
+);
 
-                    window.location.href =
-                        "index.html";
+return;
 
-                }, 2000);
+}
 
 
-                return;
-            }
 
+if(password !== confirmPassword){
 
-            // ========================================
-            // APPROVED
-            // ========================================
+showMessage(
+"Password မတူပါ",
+"error"
+);
 
-            if (
-                profile &&
-                profile.status === "approved"
-            ) {
+return;
 
-                showMessage(
-                    "ဝင်ရောက်မှု အောင်မြင်ပါပြီ။",
-                    "success"
-                );
+}
 
 
-                setTimeout(function () {
 
-                    window.location.href =
-                        "index.html";
+btn.disabled=true;
 
-                }, 1000);
+btn.textContent="စာရင်းသွင်းနေပါသည်...";
 
 
-                return;
-            }
 
+try{
 
-            // ========================================
-            // NO PROFILE
-            // ========================================
 
-            showMessage(
-                "Account ရှိပေမယ့် ဆိုင်အချက်အလက် မတွေ့ပါ။ Admin ကို စစ်ဆေးပေးရန်လိုပါတယ်။",
-                "error"
-            );
+// CREATE AUTH USER
 
+const {
+data,
+error
+}=
 
-        } catch (error) {
+await supabaseClient.auth.signUp({
 
-            console.error(
-                "Provider login error:",
-                error
-            );
+email,
 
+password,
 
-            let msg =
-                error.message ||
-                "Login ပြုလုပ်ရာတွင် ပြဿနာရှိနေပါသည်။";
+options:{
 
+data:{
 
-            if (
-                msg
-                    .toLowerCase()
-                    .includes("invalid login credentials")
-            ) {
+full_name:fullName,
 
-                msg =
-                    "Email သို့မဟုတ် Password မမှန်ပါ။ Account မဖွင့်ရသေးပါက အရင် ဆိုင်စာရင်းသွင်းပါ။";
+phone,
 
-            }
+shop_name:shopName,
 
+category,
 
-            showMessage(
-                msg,
-                "error"
-            );
+address
 
-        } finally {
+}
 
-            button.disabled = false;
+}
 
-            button.innerHTML =
-                "<span>ဝင်မယ်</span>";
+});
 
-        }
 
-    });
+
+if(error)
+throw error;
+
+
+
+if(!data.user){
+
+throw new Error(
+"Account ဖန်တီးမရပါ"
+);
+
+}
+
+
+
+// SAVE PROFILE
+
+const {
+error:profileError
+}
+
+=
+
+await supabaseClient
+.rpc(
+"register_provider",
+{
+
+p_full_name:fullName,
+
+p_phone:phone,
+
+p_shop_name:shopName,
+
+p_category:category,
+
+p_address:address
+
+}
+
+);
+
+
+
+if(profileError)
+throw profileError;
+
+
+
+showMessage(
+"✅ ဆိုင်စာရင်းသွင်းအောင်မြင်ပါပြီ။ Admin စစ်ဆေးပြီး အတည်ပြုပေးပါမည်။",
+"success"
+);
+
+
+
+form.reset();
+
+
+
+setTimeout(
+()=>{
+
+window.location.href=
+"login.html";
+
+},
+3000
+);
+
+
+
+}
+catch(error){
+
+
+console.error(error);
+
+
+showMessage(
+"❌ "+error.message,
+"error"
+);
+
+
+}
+finally{
+
+btn.disabled=false;
+
+btn.textContent=
+"🏪 ဆိုင်စာရင်းသွင်းမယ်";
+
+}
+
+
+
+}
+
+);
+
 
 });
