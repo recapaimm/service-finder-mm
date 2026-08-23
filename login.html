@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
         .auth-page {
             min-height: 100vh;
             display: flex;
@@ -19,11 +30,11 @@
 
         .auth-card {
             width: 100%;
-            max-width: 420px;
+            max-width: 430px;
             padding: 30px;
             border-radius: 20px;
-            background: #fff;
-            box-shadow: 0 10px 35px rgba(0,0,0,.10);
+            background: #ffffff;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.10);
         }
 
         .auth-logo {
@@ -32,17 +43,17 @@
         }
 
         .auth-logo-icon {
-            font-size: 45px;
+            font-size: 48px;
         }
 
         .auth-logo h1 {
-            margin: 8px 0 5px;
+            margin: 8px 0;
             font-size: 24px;
         }
 
         .auth-logo p {
             margin: 0;
-            opacity: .7;
+            color: #777;
         }
 
         .auth-tabs {
@@ -53,17 +64,17 @@
 
         .auth-tab {
             flex: 1;
-            padding: 12px;
+            padding: 13px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
-            background: #f1f1f1;
+            background: #eeeeee;
         }
 
         .auth-tab.active {
-            background: #111;
-            color: #fff;
+            background: #111111;
+            color: white;
         }
 
         .auth-form {
@@ -86,16 +97,15 @@
 
         .form-group input {
             width: 100%;
-            box-sizing: border-box;
             padding: 13px 14px;
-            border: 1px solid #ddd;
+            border: 1px solid #dddddd;
             border-radius: 10px;
             font-size: 16px;
             outline: none;
         }
 
         .form-group input:focus {
-            border-color: #111;
+            border-color: #111111;
         }
 
         .auth-submit {
@@ -103,33 +113,45 @@
             padding: 14px;
             border: none;
             border-radius: 10px;
-            background: #111;
-            color: #fff;
+            background: #111111;
+            color: white;
             font-size: 17px;
             cursor: pointer;
         }
 
         .auth-submit:disabled {
-            opacity: .6;
+            opacity: 0.6;
             cursor: not-allowed;
         }
 
         .auth-message {
-            margin-top: 15px;
+            display: none;
+            margin-top: 16px;
             padding: 12px;
             border-radius: 10px;
-            display: none;
             font-size: 14px;
+            line-height: 1.5;
         }
 
         .auth-message.show {
             display: block;
         }
 
+        .auth-message.success {
+            background: #e8f7e8;
+            color: #176b17;
+        }
+
+        .auth-message.error {
+            background: #ffeaea;
+            color: #a00000;
+        }
+
         .back-home {
             display: block;
             text-align: center;
             margin-top: 20px;
+            color: #333;
             text-decoration: none;
         }
     </style>
@@ -137,204 +159,526 @@
 
 <body>
 
-    <main class="auth-page">
+<main class="auth-page">
 
-        <div class="auth-card">
+    <div class="auth-card">
 
-            <div class="auth-logo">
-                <div class="auth-logo-icon">🔧</div>
+        <!-- LOGO -->
+        <div class="auth-logo">
 
-                <h1>အနီးအနားဝန်ဆောင်မှု</h1>
-
-                <p>သင့်အကောင့်ကို ဝင်ရောက်ပါ</p>
+            <div class="auth-logo-icon">
+                🔧
             </div>
 
+            <h1>
+                အနီးအနားဝန်ဆောင်မှု
+            </h1>
 
-            <!-- Tabs -->
-            <div class="auth-tabs">
-
-                <button
-                    type="button"
-                    class="auth-tab active"
-                    id="loginTab"
-                >
-                    ဝင်မယ်
-                </button>
-
-                <button
-                    type="button"
-                    class="auth-tab"
-                    id="signupTab"
-                >
-                    အကောင့်ဖွင့်မယ်
-                </button>
-
-            </div>
-
-
-            <!-- Login -->
-            <form
-                class="auth-form active"
-                id="loginForm"
-            >
-
-                <div class="form-group">
-
-                    <label for="loginEmail">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="loginEmail"
-                        placeholder="your@email.com"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="loginPassword">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        placeholder="Password"
-                        required
-                    >
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="auth-submit"
-                    id="loginBtn"
-                >
-                    ဝင်မယ်
-                </button>
-
-            </form>
-
-
-            <!-- Sign Up -->
-            <form
-                class="auth-form"
-                id="signupForm"
-            >
-
-                <div class="form-group">
-
-                    <label for="signupName">
-                        အမည်
-                    </label>
-
-                    <input
-                        type="text"
-                        id="signupName"
-                        placeholder="သင့်အမည်"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="signupEmail">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="signupEmail"
-                        placeholder="your@email.com"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="signupPassword">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="signupPassword"
-                        placeholder="အနည်းဆုံး 6 လုံး"
-                        minlength="6"
-                        required
-                    >
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="auth-submit"
-                    id="signupBtn"
-                >
-                    အကောင့်ဖွင့်မယ်
-                </button>
-
-            </form>
-
-
-            <div
-                class="auth-message"
-                id="authMessage"
-            ></div>
-
-
-            <a
-                href="index.html"
-                class="back-home"
-            >
-                ← ပင်မစာမျက်နှာသို့ ပြန်မယ်
-            </a>
+            <p>
+                ဝန်ဆောင်မှုများကို အလွယ်တကူ ရှာဖွေပါ
+            </p>
 
         </div>
 
-    </main>
+
+        <!-- TABS -->
+        <div class="auth-tabs">
+
+            <button
+                type="button"
+                class="auth-tab active"
+                id="loginTab"
+            >
+                ဝင်မယ်
+            </button>
+
+            <button
+                type="button"
+                class="auth-tab"
+                id="signupTab"
+            >
+                အကောင့်ဖွင့်မယ်
+            </button>
+
+        </div>
 
 
-    <script>
+        <!-- ================================ -->
+        <!-- LOGIN FORM -->
+        <!-- ================================ -->
 
-        const loginTab = document.getElementById("loginTab");
-        const signupTab = document.getElementById("signupTab");
+        <form
+            id="loginForm"
+            class="auth-form active"
+        >
 
-        const loginForm = document.getElementById("loginForm");
-        const signupForm = document.getElementById("signupForm");
+            <div class="form-group">
 
-        loginTab.addEventListener("click", () => {
+                <label for="loginEmail">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="your@email.com"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="auth-submit"
+                id="loginBtn"
+            >
+                ဝင်မယ်
+            </button>
+
+        </form>
+
+
+        <!-- ================================ -->
+        <!-- SIGNUP FORM -->
+        <!-- ================================ -->
+
+        <form
+            id="signupForm"
+            class="auth-form"
+        >
+
+            <div class="form-group">
+
+                <label for="signupName">
+                    အမည်
+                </label>
+
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="သင့်အမည်"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupEmail">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="your@email.com"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="အနည်းဆုံး 6 လုံး"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="auth-submit"
+                id="signupBtn"
+            >
+                အကောင့်ဖွင့်မယ်
+            </button>
+
+        </form>
+
+
+        <!-- MESSAGE -->
+        <div
+            id="authMessage"
+            class="auth-message"
+        ></div>
+
+
+        <!-- BACK -->
+        <a
+            href="index.html"
+            class="back-home"
+        >
+            ← ပင်မစာမျက်နှာသို့ ပြန်မယ်
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- ====================================== -->
+<!-- SUPABASE -->
+<!-- ====================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/auth.js"></script>
+
+
+<!-- ====================================== -->
+<!-- LOGIN PAGE SCRIPT -->
+<!-- ====================================== -->
+
+<script>
+
+    // ================================
+    // GET ELEMENTS
+    // ================================
+
+    const loginTab =
+        document.getElementById("loginTab");
+
+    const signupTab =
+        document.getElementById("signupTab");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const signupForm =
+        document.getElementById("signupForm");
+
+    const loginBtn =
+        document.getElementById("loginBtn");
+
+    const signupBtn =
+        document.getElementById("signupBtn");
+
+    const authMessage =
+        document.getElementById("authMessage");
+
+
+    // ================================
+    // SHOW MESSAGE
+    // ================================
+
+    function showMessage(
+        message,
+        type
+    ) {
+
+        authMessage.textContent =
+            message;
+
+        authMessage.className =
+            "auth-message show " + type;
+
+    }
+
+
+    // ================================
+    // CLEAR MESSAGE
+    // ================================
+
+    function clearMessage() {
+
+        authMessage.textContent = "";
+
+        authMessage.className =
+            "auth-message";
+
+    }
+
+
+    // ================================
+    // LOGIN TAB
+    // ================================
+
+    loginTab.addEventListener(
+        "click",
+        function () {
+
+            clearMessage();
 
             loginTab.classList.add("active");
+
             signupTab.classList.remove("active");
 
             loginForm.classList.add("active");
+
             signupForm.classList.remove("active");
 
-        });
+        }
+    );
 
 
-        signupTab.addEventListener("click", () => {
+    // ================================
+    // SIGNUP TAB
+    // ================================
+
+    signupTab.addEventListener(
+        "click",
+        function () {
+
+            clearMessage();
 
             signupTab.classList.add("active");
+
             loginTab.classList.remove("active");
 
             signupForm.classList.add("active");
+
             loginForm.classList.remove("active");
 
-        });
+        }
+    );
 
-    </script>
+
+    // ================================
+    // LOGIN
+    // ================================
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            clearMessage();
+
+            const email =
+                document
+                    .getElementById("loginEmail")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("loginPassword")
+                    .value;
+
+
+            loginBtn.disabled = true;
+
+            loginBtn.textContent =
+                "ဝင်နေပါပြီ...";
+
+
+            try {
+
+                await loginUser(
+                    email,
+                    password
+                );
+
+
+                showMessage(
+                    "အကောင့်ဝင်ရောက်ပြီးပါပြီ။",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "index.html";
+
+                    },
+                    700
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "အကောင့်ဝင်ရာတွင် အမှားတစ်ခု ဖြစ်နေပါတယ်။",
+                    "error"
+                );
+
+            }
+
+
+            loginBtn.disabled = false;
+
+            loginBtn.textContent =
+                "ဝင်မယ်";
+
+        }
+    );
+
+
+    // ================================
+    // SIGN UP
+    // ================================
+
+    signupForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            clearMessage();
+
+
+            const name =
+                document
+                    .getElementById("signupName")
+                    .value
+                    .trim();
+
+            const email =
+                document
+                    .getElementById("signupEmail")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("signupPassword")
+                    .value;
+
+
+            signupBtn.disabled = true;
+
+            signupBtn.textContent =
+                "အကောင့်ဖွင့်နေပါပြီ...";
+
+
+            try {
+
+                const result =
+                    await signUpUser(
+                        email,
+                        password,
+                        name
+                    );
+
+
+                if (result.user) {
+
+                    showMessage(
+                        "အကောင့်ဖွင့်ပြီးပါပြီ။ Login ဝင်နိုင်ပါပြီ။",
+                        "success"
+                    );
+
+
+                    signupForm.reset();
+
+
+                    setTimeout(
+                        function () {
+
+                            loginTab.click();
+
+                        },
+                        1000
+                    );
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Signup error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "အကောင့်ဖွင့်ရာတွင် အမှားတစ်ခု ဖြစ်နေပါတယ်။",
+                    "error"
+                );
+
+            }
+
+
+            signupBtn.disabled = false;
+
+            signupBtn.textContent =
+                "အကောင့်ဖွင့်မယ်";
+
+        }
+    );
+
+
+    // ================================
+    // CHECK EXISTING LOGIN
+    // ================================
+
+    (async function () {
+
+        try {
+
+            const user =
+                await getCurrentUser();
+
+
+            if (user) {
+
+                console.log(
+                    "Already logged in:",
+                    user.email
+                );
+
+                // လိုအပ်ရင် နောက်ပိုင်း
+                // index.html ကို redirect လုပ်နိုင်ပါတယ်။
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Auth check error:",
+                error
+            );
+
+        }
+
+    })();
+
+</script>
 
 </body>
-  </html>
+    </html>
