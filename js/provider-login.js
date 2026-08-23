@@ -1,277 +1,289 @@
-document.addEventListener(
-"DOMContentLoaded",
-function(){
+// ========================================
+// PROVIDER LOGIN
+// ========================================
 
+document.addEventListener("DOMContentLoaded", function () {
 
-const form =
-document.getElementById(
-"providerLoginForm"
-);
+    const loginForm =
+        document.getElementById("providerLoginForm");
 
+    const loginBtn =
+        document.getElementById("providerLoginBtn");
 
-const btn =
-document.getElementById(
-"providerLoginBtn"
-);
+    const messageBox =
+        document.getElementById("providerLoginMessage");
 
+    const logoutBtn =
+        document.getElementById("logoutBtn");
 
-const message =
-document.getElementById(
-"providerLoginMessage"
-);
 
+    // ========================================
+    // SHOW MESSAGE
+    // ========================================
 
+    function showMessage(message, type = "error") {
 
-function showMessage(text,type){
+        if (!messageBox) {
+            return;
+        }
 
-message.textContent = text;
+        messageBox.textContent = message;
 
-message.className =
-"provider-auth-message show " + type;
+        messageBox.className =
+            "provider-auth-message show " + type;
+    }
 
-}
 
+    // ========================================
+    // LOGIN
+    // ========================================
 
+    if (loginForm) {
 
-if(!form) return;
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
 
+                event.preventDefault();
 
 
-form.addEventListener(
-"submit",
-async function(e){
+                const email =
+                    document
+                        .getElementById("providerEmail")
+                        .value
+                        .trim();
 
-e.preventDefault();
+                const password =
+                    document
+                        .getElementById("providerPassword")
+                        .value;
 
 
+                // ==================================
+                // VALIDATION
+                // ==================================
 
-const email =
-document
-.getElementById("providerEmail")
-.value
-.trim();
+                if (!email || !password) {
 
+                    showMessage(
+                        "Email နဲ့ Password နှစ်ခုလုံး ဖြည့်ပေးပါ။",
+                        "error"
+                    );
 
+                    return;
+                }
 
-const password =
-document
-.getElementById("providerPassword")
-.value;
 
+                // ==================================
+                // START LOGIN
+                // ==================================
 
+                loginBtn.disabled = true;
 
-if(!email || !password){
+                loginBtn.innerHTML =
+                    "<span>⏳ ဝင်ရောက်နေပါသည်...</span>";
 
-showMessage(
-"Email နှင့် Password ဖြည့်ပါ",
-"error"
-);
 
-return;
+                if (messageBox) {
 
-}
+                    messageBox.className =
+                        "provider-auth-message";
 
+                }
 
 
-btn.disabled=true;
+                try {
 
-btn.textContent="ဝင်နေပါသည်...";
+                    // ==================================
+                    // SUPABASE LOGIN
+                    // ==================================
 
+                    const {
+                        data,
+                        error
+                    } =
+                        await supabaseClient.auth.signInWithPassword({
 
+                            email: email,
 
-try{
+                            password: password
 
+                        });
 
-// LOGIN
 
-const {
-data,
-error
-}=
+                    if (error) {
 
-await supabaseClient.auth.signInWithPassword({
+                        throw error;
 
-email:email,
+                    }
 
-password:password
 
-});
+                    if (!data || !data.user) {
 
+                        throw new Error(
+                            "Login မအောင်မြင်ပါ။"
+                        );
 
+                    }
 
-if(error)
-throw error;
 
+                    console.log(
+                        "Login successful:",
+                        data.user
+                    );
 
 
-const user =
-data.user;
+                    // ==================================
+                    // SUCCESS
+                    // ==================================
 
+                    showMessage(
+                        "✅ Login အောင်မြင်ပါပြီ။",
+                        "success"
+                    );
 
 
-if(!user){
+                    loginBtn.innerHTML =
+                        "<span>✅ ဝင်ရောက်ပြီးပါပြီ</span>";
 
-throw new Error(
-"Account မတွေ့ပါ"
-);
 
-}
+                    // ==================================
+                    // GO HOME
+                    // ==================================
 
+                    setTimeout(
+                        function () {
 
+                            window.location.href =
+                                "index.html";
 
+                        },
+                        1000
+                    );
 
-// CHECK PROFILE
 
-const {
+                } catch (error) {
 
-data:profile,
+                    console.error(
+                        "Provider login error:",
+                        error
+                    );
 
-error:profileError
 
-}
+                    let message =
+                        error?.message ||
+                        "Login ဝင်ရာတွင် ပြဿနာဖြစ်နေပါသည်။";
 
-=
 
-await supabaseClient
+                    const lower =
+                        message.toLowerCase();
 
-.from("profiles")
 
-.select("*")
+                    // ==================================
+                    // FRIENDLY ERROR
+                    // ==================================
 
-.eq("id",user.id)
+                    if (
+                        lower.includes(
+                            "invalid login credentials"
+                        )
+                    ) {
 
-.single();
+                        message =
+                            "❌ Email သို့မဟုတ် Password မှားနေပါတယ်။";
 
+                    }
 
+                    else if (
+                        lower.includes(
+                            "email not confirmed"
+                        )
+                    ) {
 
-if(profileError){
+                        message =
+                            "📧 Email အတည်ပြုရန် လိုအပ်နေပါတယ်။";
 
-throw profileError;
+                    }
 
-}
+                    else if (
+                        lower.includes(
+                            "too many requests"
+                        )
+                    ) {
 
+                        message =
+                            "⏳ Login ကြိုးစားမှုများလွန်းပါသည်။ ခဏစောင့်ပြီး ပြန်ကြိုးစားပါ။";
 
+                    }
 
 
+                    showMessage(
+                        message,
+                        "error"
+                    );
 
-// CHECK ROLE
 
-if(profile.role !== "provider"){
+                    loginBtn.disabled = false;
 
+                    loginBtn.innerHTML =
+                        "<span>ဝင်မယ်</span>";
 
-throw new Error(
-"ဒီ Account သည် ဆိုင်သမား Account မဟုတ်ပါ"
-);
+                }
 
+            }
+        );
 
-}
+    }
 
 
+    // ========================================
+    // LOGOUT
+    // ========================================
 
+    if (logoutBtn) {
 
-// CHECK STATUS
+        logoutBtn.addEventListener(
+            "click",
+            async function () {
 
+                logoutBtn.disabled = true;
 
-if(profile.status === "pending"){
+                logoutBtn.textContent =
+                    "⏳ အကောင့်ထွက်နေပါသည်...";
 
 
-showMessage(
-"⏳ Admin မှ စစ်ဆေးနေဆဲ ဖြစ်ပါတယ်။ အတည်ပြုပြီးမှ ဝင်နိုင်ပါမည်။",
-"error"
-);
+                try {
 
+                    await logoutUser();
 
-await supabaseClient.auth.signOut();
+                } catch (error) {
 
-return;
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
 
 
-}
+                    logoutBtn.disabled = false;
 
+                    logoutBtn.textContent =
+                        "🚪 အကောင့်ထွက်မယ်";
 
 
+                    if (messageBox) {
 
-if(profile.status === "rejected"){
+                        showMessage(
+                            "❌ အကောင့်ထွက်ရာတွင် ပြဿနာရှိနေပါသည်။",
+                            "error"
+                        );
 
+                    }
 
-showMessage(
-"❌ သင့်ဆိုင်စာရင်းကို ပယ်ချထားပါတယ်။",
-"error"
-);
+                }
 
+            }
+        );
 
-await supabaseClient.auth.signOut();
-
-return;
-
-
-}
-
-
-
-
-if(profile.status === "approved"){
-
-
-
-showMessage(
-"✅ Login အောင်မြင်ပါပြီ",
-"success"
-);
-
-
-
-setTimeout(
-function(){
-
-window.location.href =
-"provider-dashboard.html";
-
-
-},
-1500
-);
-
-
-
-}
-
-
-
-}
-catch(error){
-
-
-console.error(
-"Login error:",
-error
-);
-
-
-
-showMessage(
-"❌ " + error.message,
-"error"
-);
-
-
-
-}
-finally{
-
-
-btn.disabled=false;
-
-btn.textContent="ဝင်မယ်";
-
-
-}
-
-
-
-}
-
-);
-
+    }
 
 });
