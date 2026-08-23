@@ -1,1 +1,292 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>အနီးအနား ဝန်ဆောင်မှု</title>
+
+    <meta
+        name="description"
+        content="သင့်အနီးအနားရှိ ဝန်ဆောင်မှုများကို အလွယ်တကူ ရှာဖွေပါ။"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🔧</span>
+                <span>အနီးအနားဝန်ဆောင်မှု</span>
+            </a>
+
+            <button
+                class="location-header-btn"
+                id="headerLocationBtn"
+            >
+                📍 <span>တည်နေရာ</span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Hero -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+                    📍 သင့်အနီးအနားမှာ ရှာဖွေပါ
+                </span>
+
+                <h1>
+                    လိုအပ်တဲ့ ဝန်ဆောင်မှုကို<br>
+                    <strong>အလွယ်တကူ ရှာပါ</strong>
+                </h1>
+
+                <p>
+                    သင့်အနီးအနားရှိ ဆိုင်များနှင့်
+                    ဝန်ဆောင်မှုပေးသူများကို ရှာဖွေပါ။
+                </p>
+
+
+                <!-- Search -->
+                <div class="search-box">
+
+                    <span class="search-icon">🔍</span>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="ဥပမာ - ဖုန်းပြင်၊ ဆိုင်ကယ်ပြင်..."
+                        autocomplete="off"
+                    >
+
+                    <button id="searchBtn">
+                        ရှာမယ်
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="location-btn"
+                    id="locationBtn"
+                >
+                    📍 ကျွန်ုပ်၏တည်နေရာကို အသုံးပြုမယ်
+                </button>
+
+                <p
+                    class="location-status"
+                    id="locationStatus"
+                ></p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Categories -->
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        ဝန်ဆောင်မှုများ
+                    </span>
+
+                    <h2>အမျိုးအစားရွေးပါ</h2>
+                </div>
+
+                <button
+                    class="view-all-btn"
+                    id="viewAllBtn"
+                >
+                    အားလုံးကြည့်မယ် →
+                </button>
+
+            </div>
+
+
+            <div
+                class="category-grid"
+                id="categoryGrid"
+            >
+
+                <button class="category-card" data-category="ဖုန်း">
+                    <span>📱</span>
+                    <strong>ဖုန်းပြင်</strong>
+                </button>
+
+                <button class="category-card" data-category="ကွန်ပျူတာ">
+                    <span>💻</span>
+                    <strong>ကွန်ပျူတာ</strong>
+                </button>
+
+                <button class="category-card" data-category="ဆိုင်ကယ်">
+                    <span>🏍️</span>
+                    <strong>ဆိုင်ကယ်ပြင်</strong>
+                </button>
+
+                <button class="category-card" data-category="ကား">
+                    <span>🚗</span>
+                    <strong>ကားပြင်</strong>
+                </button>
+
+                <button class="category-card" data-category="အဲကွန်း">
+                    <span>❄️</span>
+                    <strong>အဲကွန်း</strong>
+                </button>
+
+                <button class="category-card" data-category="လျှပ်စစ်">
+                    <span>⚡</span>
+                    <strong>လျှပ်စစ်</strong>
+                </button>
+
+                <button class="category-card" data-category="ရေပိုက်">
+                    <span>🚰</span>
+                    <strong>ရေပိုက်</strong>
+                </button>
+
+                <button class="category-card" data-category="အိမ်ပြုပြင်">
+                    <span>🏠</span>
+                    <strong>အိမ်ပြုပြင်</strong>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Services -->
+        <section class="section services-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        အနီးအနားရှိ
+                    </span>
+
+                    <h2 id="serviceTitle">
+                        လူကြိုက်များသော ဝန်ဆောင်မှုများ
+                    </h2>
+                </div>
+
+                <span
+                    class="result-count"
+                    id="resultCount"
+                >
+                    0 ခု
+                </span>
+
+            </div>
+
+
+            <div
+                class="service-grid"
+                id="serviceGrid"
+            >
+
+                <div class="loading">
+                    ဝန်ဆောင်မှုများ ရှာဖွေနေပါသည်...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Empty Result -->
+        <section
+            class="empty-state hidden"
+            id="emptyState"
+        >
+
+            <div class="empty-icon">🔎</div>
+
+            <h3>ဝန်ဆောင်မှု မတွေ့ပါ</h3>
+
+            <p>
+                ရှာဖွေမှု စကားလုံးကို ပြောင်းပြီး
+                ထပ်မံရှာကြည့်ပါ။
+            </p>
+
+            <button id="resetSearchBtn">
+                အားလုံးပြန်ကြည့်မယ်
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Detail Modal -->
+    <div
+        class="modal hidden"
+        id="serviceModal"
+    >
+
+        <div class="modal-overlay" id="modalOverlay"></div>
+
+        <div class="modal-content">
+
+            <button
+                class="modal-close"
+                id="modalClose"
+                aria-label="ပိတ်မည်"
+            >
+                ×
+            </button>
+
+            <div id="modalBody"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="footer-inner">
+
+            <div>
+                <strong>🔧 အနီးအနားဝန်ဆောင်မှု</strong>
+
+                <p>
+                    လိုအပ်တဲ့ဝန်ဆောင်မှုကို
+                    လွယ်လွယ်ကူကူရှာဖွေပါ။
+                </p>
+            </div>
+
+            <p class="copyright">
+                © 2026 အနီးအနားဝန်ဆောင်မှု
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="js/services.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+              </html>
