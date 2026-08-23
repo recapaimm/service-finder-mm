@@ -1,1 +1,154 @@
-/* Responsive Styles */
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+
+@media (max-width: 1000px) {
+
+    .category-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .service-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .hero-content {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+}
+
+
+@media (max-width: 560px) {
+
+    .header-inner {
+        min-height: 62px;
+    }
+
+
+    .logo {
+        font-size: 15px;
+    }
+
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .location-header-btn {
+        padding: 8px 10px;
+
+        font-size: 12px;
+    }
+
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+
+    .hero p {
+        font-size: 14px;
+    }
+
+
+    .search-box {
+        flex-wrap: wrap;
+
+        padding: 8px;
+    }
+
+
+    .search-icon {
+        padding-left: 8px;
+    }
+
+
+    .search-box input {
+        flex: 1;
+
+        width: calc(100% - 45px);
+    }
+
+
+    .search-box button {
+        width: 100%;
+    }
+
+
+    .category-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 8px;
+    }
+
+
+    .category-card {
+        min-height: 95px;
+
+        padding: 10px 4px;
+    }
+
+
+    .category-card span {
+        font-size: 25px;
+    }
+
+
+    .category-card strong {
+        font-size: 11px;
+    }
+
+
+    .section-heading {
+        align-items: flex-start;
+    }
+
+
+    .section-heading h2 {
+        font-size: 20px;
+    }
+
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .service-image {
+        height: 130px;
+    }
+
+
+    .footer-inner {
+        flex-direction: column;
+    }
+
+
+    .copyright {
+        align-self: flex-start;
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .category-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
