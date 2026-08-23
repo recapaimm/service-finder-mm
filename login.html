@@ -1,555 +1,133 @@
 <!DOCTYPE html>
 <html lang="my">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>ဆိုင်သမားဝင်ရန် | အနီးအနားဝန်ဆောင်မှု</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
-<title>ဆိုင်သမားဝင်ရန် | အနီးအနားဝန်ဆောင်မှု</title>
+    <!-- Provider CSS -->
+    <link rel="stylesheet" href="css/provider.css">
 
-
-<link rel="stylesheet" href="css/style.css">
-
-
-<style>
-
-*{
-    box-sizing:border-box;
-}
-
-
-body{
-
-    margin:0;
-
-    min-height:100vh;
-
-    font-family:
-    "Noto Sans Myanmar",
-    Arial,
-    sans-serif;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #0f172a
-    );
-
-}
-
-
-/* MAIN */
-
-.auth-page{
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:20px;
-
-}
-
-
-/* CARD */
-
-.auth-card{
-
-    width:100%;
-
-    max-width:420px;
-
-    background:white;
-
-    padding:35px;
-
-    border-radius:24px;
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.25);
-
-}
-
-
-/* LOGO */
-
-
-.logo-box{
-
-    text-align:center;
-
-    margin-bottom:30px;
-
-}
-
-
-.logo-icon{
-
-    width:80px;
-
-    height:80px;
-
-    margin:auto;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:40px;
-
-    border-radius:50%;
-
-    background:#eff6ff;
-
-}
-
-
-.logo-box h1{
-
-    margin:15px 0 8px;
-
-    font-size:24px;
-
-}
-
-
-.logo-box p{
-
-    color:#64748b;
-
-    margin:0;
-
-}
-
-
-
-/* INPUT */
-
-
-.form-group{
-
-    margin-bottom:18px;
-
-}
-
-
-label{
-
-    display:block;
-
-    margin-bottom:7px;
-
-    font-weight:600;
-
-}
-
-
-input{
-
-    width:100%;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    border:1px solid #ddd;
-
-    font-size:16px;
-
-}
-
-
-input:focus{
-
-    outline:none;
-
-    border-color:#2563eb;
-
-}
-
-
-
-/* BUTTON */
-
-
-.login-btn{
-
-    width:100%;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-.login-btn:hover{
-
-    background:#1d4ed8;
-
-}
-
-
-
-/* REGISTER */
-
-
-.register-box{
-
-    text-align:center;
-
-    margin-top:25px;
-
-    padding-top:20px;
-
-    border-top:1px solid #eee;
-
-}
-
-
-.register-box a{
-
-    color:#2563eb;
-
-    font-weight:bold;
-
-    text-decoration:none;
-
-}
-
-
-
-/* MESSAGE */
-
-
-.message{
-
-    margin-top:15px;
-
-    padding:12px;
-
-    border-radius:10px;
-
-    display:none;
-
-    font-size:14px;
-
-}
-
-
-.message.show{
-
-    display:block;
-
-}
-
-
-.success{
-
-    background:#dcfce7;
-
-    color:#166534;
-
-}
-
-
-.error{
-
-    background:#fee2e2;
-
-    color:#991b1b;
-
-}
-
-
-
-/* MOBILE */
-
-
-@media(max-width:480px){
-
-.auth-card{
-
-    padding:25px;
-
-}
-
-.logo-box h1{
-
-    font-size:21px;
-
-}
-
-}
-
-
-</style>
-
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
-
-
 
 <body>
 
+    <main class="provider-auth-page">
 
-<div class="auth-page">
+        <section class="provider-auth-card">
 
+            <!-- Logo -->
+            <div class="provider-auth-logo">
 
-<div class="auth-card">
+                <div class="provider-logo-icon">
+                    🏪
+                </div>
 
+                <h1>
+                    ဆိုင်သမားဝင်ရန်
+                </h1>
 
-<div class="logo-box">
+                <p>
+                    သင့်ဆိုင်ကို စီမံခန့်ခွဲရန် ဝင်ရောက်ပါ
+                </p>
 
+            </div>
 
-<div class="logo-icon">
 
-🏪
+            <!-- Login Form -->
+            <form id="providerLoginForm">
 
-</div>
+                <div class="provider-form-group">
 
+                    <label for="providerEmail">
+                        Email
+                    </label>
 
-<h1>
+                    <input
+                        type="email"
+                        id="providerEmail"
+                        placeholder="ဆိုင် Email ထည့်ပါ"
+                        autocomplete="email"
+                        required
+                    >
 
-ဝန်ဆောင်မှုပေးသူ Login
+                </div>
 
-</h1>
 
+                <div class="provider-form-group">
 
-<p>
+                    <label for="providerPassword">
+                        Password
+                    </label>
 
-ဆိုင်ကို စီမံခန့်ခွဲရန် ဝင်ရောက်ပါ
+                    <input
+                        type="password"
+                        id="providerPassword"
+                        placeholder="Password ထည့်ပါ"
+                        autocomplete="current-password"
+                        required
+                    >
 
-</p>
+                </div>
 
 
-</div>
+                <button
+                    type="submit"
+                    id="providerLoginBtn"
+                    class="provider-login-btn"
+                >
+                    <span>ဝင်မယ်</span>
+                </button>
 
+            </form>
 
 
+            <!-- Message -->
+            <div
+                id="providerLoginMessage"
+                class="provider-auth-message"
+                role="alert"
+            ></div>
 
-<form id="loginForm">
 
+            <!-- Register -->
+            <div class="provider-register-box">
 
+                <p>
+                    သင့်ဆိုင်ကို ဒီ Platform မှာ တင်ချင်ပါသလား?
+                </p>
 
-<div class="form-group">
+                <a href="provider-register.html">
+                    🏪 ဆိုင်စာရင်းသွင်းရန်
+                </a>
 
+            </div>
 
-<label>
 
-Email
+            <!-- Back Home -->
+            <a
+                href="index.html"
+                class="provider-back-home"
+            >
+                ← ပင်မစာမျက်နှာသို့ ပြန်မယ်
+            </a>
 
-</label>
+        </section>
 
+    </main>
 
-<input
 
-type="email"
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-id="email"
-
-placeholder="ဆိုင် Email"
-
-required
-
->
-
-
-</div>
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-
-Password
-
-</label>
-
-
-<input
-
-type="password"
-
-id="password"
-
-placeholder="Password"
-
-required
-
->
-
-
-</div>
-
-
-
-
-
-<button
-
-class="login-btn"
-
-type="submit"
-
->
-
-ဝင်မယ်
-
-</button>
-
-
-</form>
-
-
-
-
-<div
-
-id="message"
-
-class="message"
-
-></div>
-
-
-
-
-
-<div class="register-box">
-
-
-<p>
-
-ဆိုင်အသစ်တင်ချင်ပါသလား?
-
-</p>
-
-
-<a href="provider-register.html">
-
-🏪 ဆိုင်စာရင်းသွင်းရန်
-
-</a>
-
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="js/auth.js"></script>
-
-
-
-<script>
-
-
-const form =
-document.getElementById("loginForm");
-
-
-const message =
-document.getElementById("message");
-
-
-
-form.addEventListener(
-"submit",
-async(e)=>{
-
-
-e.preventDefault();
-
-
-
-try{
-
-
-await loginUser(
-
-document.getElementById("email").value,
-
-document.getElementById("password").value
-
-);
-
-
-
-message.innerHTML =
-"Login အောင်မြင်ပါပြီ";
-
-message.className =
-"message show success";
-
-
-
-setTimeout(()=>{
-
-window.location.href="index.html";
-
-},800);
-
-
-
-}
-
-catch(error){
-
-
-message.innerHTML =
-error.message;
-
-
-message.className =
-"message show error";
-
-
-}
-
-
-});
-
-
-
-</script>
-
+    <!-- Auth -->
+    <script src="js/auth.js"></script>
 
 </body>
-
 </html>
