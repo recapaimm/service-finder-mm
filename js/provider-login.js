@@ -2,16 +2,23 @@ document.addEventListener(
 "DOMContentLoaded",
 function(){
 
+
 const form =
-document.getElementById("providerRegisterForm");
+document.getElementById(
+"providerLoginForm"
+);
 
 
 const btn =
-document.getElementById("providerRegisterBtn");
+document.getElementById(
+"providerLoginBtn"
+);
 
 
 const message =
-document.getElementById("providerRegisterMessage");
+document.getElementById(
+"providerLoginMessage"
+);
 
 
 
@@ -38,100 +45,25 @@ e.preventDefault();
 
 
 
-const fullName =
-document.getElementById(
-"providerFullName"
-).value.trim();
-
-
-
-const shopName =
-document.getElementById(
-"providerShopName"
-).value.trim();
-
-
-
-const phone =
-document.getElementById(
-"providerPhone"
-).value.trim();
-
-
-
 const email =
-document.getElementById(
-"providerEmail"
-).value.trim();
-
-
-
-const category =
-document.getElementById(
-"providerCategory"
-).value;
-
-
-
-const address =
-document.getElementById(
-"providerAddress"
-).value.trim();
+document
+.getElementById("providerEmail")
+.value
+.trim();
 
 
 
 const password =
-document.getElementById(
-"providerPassword"
-).value;
+document
+.getElementById("providerPassword")
+.value;
 
 
 
-const confirmPassword =
-document.getElementById(
-"providerConfirmPassword"
-).value;
-
-
-
-if(
-!fullName ||
-!shopName ||
-!phone ||
-!email ||
-!category ||
-!address ||
-!password
-){
+if(!email || !password){
 
 showMessage(
-"အချက်အလက်အားလုံးဖြည့်ပါ",
-"error"
-);
-
-return;
-
-}
-
-
-
-if(password.length < 6){
-
-showMessage(
-"Password အနည်းဆုံး 6 လုံးထားပါ",
-"error"
-);
-
-return;
-
-}
-
-
-
-if(password !== confirmPassword){
-
-showMessage(
-"Password မတူပါ",
+"Email နှင့် Password ဖြည့်ပါ",
 "error"
 );
 
@@ -143,43 +75,25 @@ return;
 
 btn.disabled=true;
 
-btn.textContent="စာရင်းသွင်းနေပါသည်...";
+btn.textContent="ဝင်နေပါသည်...";
 
 
 
 try{
 
 
-// CREATE AUTH USER
+// LOGIN
 
 const {
 data,
 error
 }=
 
-await supabaseClient.auth.signUp({
+await supabaseClient.auth.signInWithPassword({
 
-email,
+email:email,
 
-password,
-
-options:{
-
-data:{
-
-full_name:fullName,
-
-phone,
-
-shop_name:shopName,
-
-category,
-
-address
-
-}
-
-}
+password:password
 
 });
 
@@ -190,70 +104,137 @@ throw error;
 
 
 
-if(!data.user){
+const user =
+data.user;
+
+
+
+if(!user){
 
 throw new Error(
-"Account ဖန်တီးမရပါ"
+"Account မတွေ့ပါ"
 );
 
 }
 
 
 
-// SAVE PROFILE
+
+// CHECK PROFILE
 
 const {
+
+data:profile,
+
 error:profileError
+
 }
 
 =
 
 await supabaseClient
-.rpc(
-"register_provider",
-{
 
-p_full_name:fullName,
+.from("profiles")
 
-p_phone:phone,
+.select("*")
 
-p_shop_name:shopName,
+.eq("id",user.id)
 
-p_category:category,
+.single();
 
-p_address:address
+
+
+if(profileError){
+
+throw profileError;
 
 }
 
+
+
+
+
+// CHECK ROLE
+
+if(profile.role !== "provider"){
+
+
+throw new Error(
+"ဒီ Account သည် ဆိုင်သမား Account မဟုတ်ပါ"
 );
 
 
+}
 
-if(profileError)
-throw profileError;
+
+
+
+// CHECK STATUS
+
+
+if(profile.status === "pending"){
+
+
+showMessage(
+"⏳ Admin မှ စစ်ဆေးနေဆဲ ဖြစ်ပါတယ်။ အတည်ပြုပြီးမှ ဝင်နိုင်ပါမည်။",
+"error"
+);
+
+
+await supabaseClient.auth.signOut();
+
+return;
+
+
+}
+
+
+
+
+if(profile.status === "rejected"){
+
+
+showMessage(
+"❌ သင့်ဆိုင်စာရင်းကို ပယ်ချထားပါတယ်။",
+"error"
+);
+
+
+await supabaseClient.auth.signOut();
+
+return;
+
+
+}
+
+
+
+
+if(profile.status === "approved"){
 
 
 
 showMessage(
-"✅ ဆိုင်စာရင်းသွင်းအောင်မြင်ပါပြီ။ Admin စစ်ဆေးပြီး အတည်ပြုပေးပါမည်။",
+"✅ Login အောင်မြင်ပါပြီ",
 "success"
 );
 
 
 
-form.reset();
-
-
-
 setTimeout(
-()=>{
+function(){
 
-window.location.href=
-"login.html";
+window.location.href =
+"provider-dashboard.html";
+
 
 },
-3000
+1500
 );
+
+
+
+}
 
 
 
@@ -261,22 +242,28 @@ window.location.href=
 catch(error){
 
 
-console.error(error);
+console.error(
+"Login error:",
+error
+);
+
 
 
 showMessage(
-"❌ "+error.message,
+"❌ " + error.message,
 "error"
 );
+
 
 
 }
 finally{
 
+
 btn.disabled=false;
 
-btn.textContent=
-"🏪 ဆိုင်စာရင်းသွင်းမယ်";
+btn.textContent="ဝင်မယ်";
+
 
 }
 
