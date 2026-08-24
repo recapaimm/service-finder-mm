@@ -30,118 +30,346 @@
     <style>
 
         .provider-dashboard-page {
+
             min-height: 100vh;
+
             padding: 25px 15px;
+
         }
+
 
         .provider-dashboard-container {
+
             width: 100%;
+
             max-width: 600px;
+
             margin: 0 auto;
+
         }
+
+
+        /* ================================
+           HEADER
+        ================================= */
 
         .provider-dashboard-header {
+
             background: #2563eb;
+
             color: white;
+
             border-radius: 22px;
+
             padding: 25px;
+
             margin-bottom: 18px;
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.18);
+
+            box-shadow:
+                0 10px 30px
+                rgba(37, 99, 235, 0.18);
+
         }
+
 
         .provider-dashboard-header h1 {
+
             margin: 0 0 8px;
+
             font-size: 25px;
+
         }
+
 
         .provider-dashboard-header p {
+
             margin: 0;
+
             opacity: 0.9;
+
         }
 
-        .provider-profile-card {
-            background: #ffffff;
-            border-radius: 22px;
-            padding: 25px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
-        }
 
-        .provider-profile-title {
-            font-size: 21px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #172033;
-        }
-
-        .provider-profile-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #eaecf0;
-        }
-
-        .provider-profile-item:last-child {
-            border-bottom: none;
-        }
-
-        .provider-profile-label {
-            font-size: 13px;
-            color: #667085;
-            margin-bottom: 5px;
-        }
-
-        .provider-profile-value {
-            font-size: 16px;
-            font-weight: 600;
-            color: #172033;
-            word-break: break-word;
-        }
-
-        .provider-status {
-            display: inline-block;
-            padding: 7px 12px;
-            border-radius: 20px;
-            background: #ecfdf3;
-            color: #027a48;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .provider-logout-btn {
-            width: 100%;
-            margin-top: 25px;
-            padding: 15px;
-            border: none;
-            border-radius: 13px;
-            background: #dc2626;
-            color: white;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .provider-logout-btn:hover {
-            background: #b91c1c;
-        }
-
-        .provider-logout-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+        /* ================================
+           MESSAGE
+        ================================= */
 
         .provider-dashboard-message {
+
             display: none;
+
             margin-bottom: 18px;
+
             padding: 14px;
+
             border-radius: 12px;
+
             line-height: 1.6;
+
+            font-size: 14px;
+
         }
+
 
         .provider-dashboard-message.show {
+
             display: block;
+
         }
 
+
         .provider-dashboard-message.error {
+
             background: #fef3f2;
+
             color: #b42318;
+
+            border: 1px solid #fecdca;
+
+        }
+
+
+        .provider-dashboard-message.success {
+
+            background: #ecfdf3;
+
+            color: #027a48;
+
+            border: 1px solid #abefc6;
+
+        }
+
+
+        /* ================================
+           PROFILE CARD
+        ================================= */
+
+        .provider-profile-card {
+
+            background: #ffffff;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .provider-profile-title {
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+
+            color: #172033;
+
+        }
+
+
+        .provider-profile-item {
+
+            padding: 15px 0;
+
+            border-bottom:
+                1px solid #eaecf0;
+
+        }
+
+
+        .provider-profile-item:last-of-type {
+
+            border-bottom: none;
+
+        }
+
+
+        .provider-profile-label {
+
+            font-size: 13px;
+
+            color: #667085;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .provider-profile-value {
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            color: #172033;
+
+            word-break: break-word;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* ================================
+           STATUS
+        ================================= */
+
+        .provider-status {
+
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background: #ecfdf3;
+
+            color: #027a48;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* ================================
+           LOGOUT
+        ================================= */
+
+        .provider-logout-btn {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background: #dc2626;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .provider-logout-btn:hover {
+
+            background: #b91c1c;
+
+        }
+
+
+        .provider-logout-btn:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* ================================
+           HOME BUTTON
+        ================================= */
+
+        .provider-dashboard-home {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #667085;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+
+        .provider-dashboard-home:hover {
+
+            color: #2563eb;
+
+        }
+
+
+        /* ================================
+           LOADING
+        ================================= */
+
+        .dashboard-loading {
+
+            text-align: center;
+
+            padding: 30px 10px;
+
+            color: #667085;
+
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 600px) {
+
+            .provider-dashboard-page {
+
+                padding: 15px;
+
+            }
+
+
+            .provider-dashboard-header {
+
+                padding: 21px;
+
+                border-radius: 18px;
+
+            }
+
+
+            .provider-dashboard-header h1 {
+
+                font-size: 22px;
+
+            }
+
+
+            .provider-profile-card {
+
+                padding: 20px;
+
+                border-radius: 18px;
+
+            }
+
+
+            .provider-profile-value {
+
+                font-size: 15px;
+
+            }
+
         }
 
     </style>
@@ -157,7 +385,9 @@
     <div class="provider-dashboard-container">
 
 
-        <!-- HEADER -->
+        <!-- =================================
+             HEADER
+        ================================= -->
 
         <div class="provider-dashboard-header">
 
@@ -172,180 +402,247 @@
         </div>
 
 
-        <!-- MESSAGE -->
+        <!-- =================================
+             MESSAGE
+        ================================= -->
 
         <div
             id="dashboardMessage"
             class="provider-dashboard-message"
+            role="alert"
         ></div>
 
 
-        <!-- PROFILE -->
+        <!-- =================================
+             PROFILE CARD
+        ================================= -->
 
-        <section class="provider-profile-card">
+        <section
+            class="provider-profile-card"
+            id="profileCard"
+        >
 
             <div class="provider-profile-title">
+
                 👤 ကျွန်ုပ်၏အချက်အလက်
-            </div>
-
-
-            <!-- OWNER -->
-
-            <div class="provider-profile-item">
-
-                <div class="provider-profile-label">
-                    ပိုင်ရှင်အမည်
-                </div>
-
-                <div
-                    id="profileFullName"
-                    class="provider-profile-value"
-                >
-                    Loading...
-                </div>
 
             </div>
 
 
-            <!-- SHOP -->
+            <!-- LOADING -->
 
-            <div class="provider-profile-item">
-
-                <div class="provider-profile-label">
-                    ဆိုင်အမည်
-                </div>
-
-                <div
-                    id="profileShopName"
-                    class="provider-profile-value"
-                >
-                    Loading...
-                </div>
-
-            </div>
-
-
-            <!-- PHONE -->
-
-            <div class="provider-profile-item">
-
-                <div class="provider-profile-label">
-                    ဖုန်းနံပါတ်
-                </div>
-
-                <div
-                    id="profilePhone"
-                    class="provider-profile-value"
-                >
-                    Loading...
-                </div>
-
-            </div>
-
-
-            <!-- EMAIL -->
-
-            <div class="provider-profile-item">
-
-                <div class="provider-profile-label">
-                    Email
-                </div>
-
-                <div
-                    id="profileEmail"
-                    class="provider-profile-value"
-                >
-                    Loading...
-                </div>
-
-            </div>
-
-
-            <!-- CATEGORY -->
-
-            <div class="provider-profile-item">
-
-                <div class="provider-profile-label">
-                    ဝန်ဆောင်မှုအမျိုးအစား
-                </div>
-
-                <div
-                    id="profileCategory"
-                    class="provider-profile-value"
-                >
-                    Loading...
-                </div>
-
-            </div>
-
-
-            <!-- ADDRESS -->
-
-            <div class="provider-profile-item">
-
-                <div class="provider-profile-label">
-                    ဆိုင်လိပ်စာ
-                </div>
-
-                <div
-                    id="profileAddress"
-                    class="provider-profile-value"
-                >
-                    Loading...
-                </div>
-
-            </div>
-
-
-            <!-- STATUS -->
-
-            <div class="provider-profile-item">
-
-                <div class="provider-profile-label">
-                    အကောင့်အခြေအနေ
-                </div>
-
-                <div
-                    id="profileStatus"
-                    class="provider-profile-value"
-                >
-                    Loading...
-                </div>
-
-            </div>
-
-
-            <!-- LOGOUT -->
-
-            <button
-                type="button"
-                id="providerLogoutBtn"
-                class="provider-logout-btn"
+            <div
+                id="dashboardLoading"
+                class="dashboard-loading"
             >
 
-                🚪 အကောင့်ထွက်မယ်
+                ⏳ အချက်အလက်များကို
+                ရယူနေပါသည်...
 
-            </button>
+            </div>
 
+
+            <!-- =================================
+                 PROFILE DATA
+            ================================= -->
+
+            <div id="profileContent" style="display:none;">
+
+
+                <!-- OWNER -->
+
+                <div class="provider-profile-item">
+
+                    <div class="provider-profile-label">
+
+                        ပိုင်ရှင်အမည်
+
+                    </div>
+
+                    <div
+                        id="profileFullName"
+                        class="provider-profile-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <!-- SHOP -->
+
+                <div class="provider-profile-item">
+
+                    <div class="provider-profile-label">
+
+                        ဆိုင်အမည်
+
+                    </div>
+
+                    <div
+                        id="profileShopName"
+                        class="provider-profile-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="provider-profile-item">
+
+                    <div class="provider-profile-label">
+
+                        ဖုန်းနံပါတ်
+
+                    </div>
+
+                    <div
+                        id="profilePhone"
+                        class="provider-profile-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="provider-profile-item">
+
+                    <div class="provider-profile-label">
+
+                        Email
+
+                    </div>
+
+                    <div
+                        id="profileEmail"
+                        class="provider-profile-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="provider-profile-item">
+
+                    <div class="provider-profile-label">
+
+                        ဝန်ဆောင်မှုအမျိုးအစား
+
+                    </div>
+
+                    <div
+                        id="profileCategory"
+                        class="provider-profile-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="provider-profile-item">
+
+                    <div class="provider-profile-label">
+
+                        ဆိုင်လိပ်စာ
+
+                    </div>
+
+                    <div
+                        id="profileAddress"
+                        class="provider-profile-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="provider-profile-item">
+
+                    <div class="provider-profile-label">
+
+                        အကောင့်အခြေအနေ
+
+                    </div>
+
+                    <div
+                        id="profileStatus"
+                        class="provider-profile-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <!-- LOGOUT -->
+
+                <button
+                    type="button"
+                    id="providerLogoutBtn"
+                    class="provider-logout-btn"
+                >
+
+                    🚪 အကောင့်ထွက်မယ်
+
+                </button>
+
+
+            </div>
 
         </section>
+
+
+        <!-- HOME -->
+
+        <a
+            href="index.html"
+            class="provider-dashboard-home"
+        >
+
+            ← ပင်မစာမျက်နှာသို့ ပြန်မယ်
+
+        </a>
+
 
     </div>
 
 </main>
 
 
-<!-- SUPABASE -->
+<!-- =================================
+     SUPABASE
+================================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 
-<!-- AUTH -->
+<!-- =================================
+     AUTH
+================================= -->
 
 <script src="js/auth.js"></script>
 
 
-<!-- DASHBOARD -->
+<!-- =================================
+     DASHBOARD
+================================= -->
 
 <script>
 
@@ -360,210 +657,453 @@ document.addEventListener(
             );
 
 
+        const loading =
+            document.getElementById(
+                "dashboardLoading"
+            );
+
+
+        const profileContent =
+            document.getElementById(
+                "profileContent"
+            );
+
+
         const logoutBtn =
             document.getElementById(
                 "providerLogoutBtn"
             );
 
 
-        function showError(text) {
+        // =================================
+        // SHOW MESSAGE
+        // =================================
+
+        function showMessage(
+            text,
+            type = "error"
+        ) {
 
             message.textContent = text;
 
             message.className =
-                "provider-dashboard-message show error";
+                "provider-dashboard-message show " +
+                type;
 
         }
 
 
-        // ========================================
-        // GET CURRENT USER
-        // ========================================
+        // =================================
+        // CATEGORY NAME
+        // =================================
 
-        const {
-            data: {
-                user
+        function getCategoryName(
+            category
+        ) {
+
+            const categories = {
+
+                phone:
+                    "📱 ဖုန်းပြင်ဆိုင်",
+
+                computer:
+                    "💻 ကွန်ပျူတာ",
+
+                motorcycle:
+                    "🛵 ဆိုင်ကယ်ပြင်",
+
+                car:
+                    "🚗 ကားပြင်",
+
+                aircon:
+                    "❄️ အဲကွန်း",
+
+                electrical:
+                    "⚡ လျှပ်စစ်",
+
+                plumbing:
+                    "🚰 ရေပိုက်",
+
+                home:
+                    "🏠 အိမ်ပြုပြင်",
+
+                other:
+                    "🛠️ အခြားဝန်ဆောင်မှု"
+
+            };
+
+
+            return (
+                categories[category] ||
+                category ||
+                "-"
+            );
+
+        }
+
+
+        // =================================
+        // GET USER
+        // =================================
+
+        let user;
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient.auth.getUser();
+
+
+            if (error) {
+
+                throw error;
+
             }
-        } =
-        await supabaseClient.auth.getUser();
 
 
-        if (!user) {
+            user = data.user;
+
+
+        } catch (error) {
+
+            console.error(
+                "Get user error:",
+                error
+            );
 
             window.location.href =
-                "provider-login.html";
+                "login.html";
 
             return;
 
         }
 
 
-        // ========================================
+        // =================================
+        // NOT LOGGED IN
+        // =================================
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        // =================================
         // GET PROFILE
-        // ========================================
+        // =================================
 
-        const {
-            data: profile,
-            error
-        } =
-        await supabaseClient
-            .from("profiles")
-            .select(
-                "id, full_name, phone, role, status, shop_name, category, address"
-            )
-            .eq("id", user.id)
-            .single();
+        let profile;
 
 
-        if (error || !profile) {
+        try {
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient
+                .from("profiles")
+                .select(
+                    `
+                    id,
+                    full_name,
+                    phone,
+                    shop_name,
+                    category,
+                    address,
+                    role,
+                    status
+                    `
+                )
+                .eq(
+                    "id",
+                    user.id
+                )
+                .maybeSingle();
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            profile = data;
+
+
+        } catch (error) {
 
             console.error(
                 "Profile error:",
                 error
             );
 
+
             await supabaseClient.auth.signOut();
 
-            showError(
-                "❌ အကောင့်အချက်အလက် မတွေ့ပါ။"
+
+            showMessage(
+                "❌ အကောင့်အချက်အလက်ကို ရယူ၍ မရပါ။",
+                "error"
             );
+
 
             setTimeout(
                 function () {
 
                     window.location.href =
-                        "provider-login.html";
+                        "login.html";
 
                 },
                 2000
             );
 
+
             return;
 
         }
 
 
-        // ========================================
-        // CHECK PROVIDER
-        // ========================================
+        // =================================
+        // PROFILE NOT FOUND
+        // =================================
 
-        if (profile.role !== "provider") {
+        if (!profile) {
 
             await supabaseClient.auth.signOut();
 
-            window.location.href =
-                "provider-login.html";
+
+            showMessage(
+                "❌ သင့်ဆိုင်အချက်အလက် မတွေ့ပါ။",
+                "error"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                2000
+            );
+
 
             return;
 
         }
 
 
-        // ========================================
-        // CHECK APPROVED
-        // ========================================
+        // =================================
+        // CHECK ROLE
+        // =================================
 
-        if (profile.status !== "approved") {
+        if (
+            profile.role !==
+            "provider"
+        ) {
 
             await supabaseClient.auth.signOut();
 
+
             window.location.href =
-                "provider-login.html";
+                "login.html";
+
 
             return;
 
         }
 
 
-        // ========================================
+        // =================================
+        // CHECK APPROVAL
+        // =================================
+
+        if (
+            profile.status !==
+            "approved"
+        ) {
+
+            await supabaseClient.auth.signOut();
+
+
+            showMessage(
+                "⏳ သင့်ဆိုင်အကောင့်ကို Admin မှ အတည်ပြုထားခြင်း မရှိသေးပါ။",
+                "error"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                2000
+            );
+
+
+            return;
+
+        }
+
+
+        // =================================
         // SHOW PROFILE
-        // ========================================
+        // =================================
 
         document.getElementById(
             "profileFullName"
         ).textContent =
-            profile.full_name || "-";
+            profile.full_name ||
+            "-";
 
 
         document.getElementById(
             "profileShopName"
         ).textContent =
-            profile.shop_name || "-";
+            profile.shop_name ||
+            "-";
 
 
         document.getElementById(
             "profilePhone"
         ).textContent =
-            profile.phone || "-";
+            profile.phone ||
+            "-";
 
 
         document.getElementById(
             "profileEmail"
         ).textContent =
-            user.email || "-";
+            user.email ||
+            "-";
 
 
         document.getElementById(
             "profileCategory"
         ).textContent =
-            profile.category || "-";
+            getCategoryName(
+                profile.category
+            );
 
 
         document.getElementById(
             "profileAddress"
         ).textContent =
-            profile.address || "-";
+            profile.address ||
+            "-";
 
 
         document.getElementById(
             "profileStatus"
         ).innerHTML =
-            '<span class="provider-status">✅ အတည်ပြုပြီး</span>';
+            `
+            <span class="provider-status">
+                ✅ Admin အတည်ပြုပြီး
+            </span>
+            `;
 
 
-        // ========================================
+        // =================================
+        // HIDE LOADING
+        // =================================
+
+        loading.style.display =
+            "none";
+
+
+        profileContent.style.display =
+            "block";
+
+
+        // =================================
         // LOGOUT
-        // ========================================
+        // =================================
 
         logoutBtn.addEventListener(
             "click",
             async function () {
 
-                logoutBtn.disabled = true;
 
-                logoutBtn.textContent =
-                    "⏳ အကောင့်ထွက်နေပါသည်...";
-
-
-                const {
-                    error
-                } =
-                await supabaseClient.auth.signOut();
-
-
-                if (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
+                const confirmLogout =
+                    confirm(
+                        "အကောင့်ထွက်မှာ သေချာပါသလား?"
                     );
 
-                    logoutBtn.disabled = false;
 
-                    logoutBtn.textContent =
-                        "🚪 အကောင့်ထွက်မယ်";
-
-                    showError(
-                        "❌ Logout လုပ်၍မရပါ။ ပြန်ကြိုးစားပါ။"
-                    );
+                if (!confirmLogout) {
 
                     return;
 
                 }
 
 
-                window.location.href =
-                    "provider-login.html";
+                logoutBtn.disabled =
+                    true;
+
+
+                logoutBtn.textContent =
+                    "⏳ အကောင့်ထွက်နေပါသည်...";
+
+
+                try {
+
+
+                    const {
+                        error
+                    } =
+                    await supabaseClient
+                        .auth
+                        .signOut();
+
+
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+
+                    window.location.href =
+                        "login.html";
+
+
+                } catch (error) {
+
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+
+                    logoutBtn.disabled =
+                        false;
+
+
+                    logoutBtn.textContent =
+                        "🚪 အကောင့်ထွက်မယ်";
+
+
+                    showMessage(
+                        "❌ အကောင့်ထွက်၍ မရပါ။ ပြန်ကြိုးစားပါ။",
+                        "error"
+                    );
+
+                }
 
             }
         );
@@ -577,4 +1117,4 @@ document.addEventListener(
 
 </body>
 
-  </html>
+    </html>
