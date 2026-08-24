@@ -3,17 +3,38 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>ဆိုင်စာရင်းသွင်းရန် | အနီးအနားဝန်ဆောင်မှု</title>
+    <title>ဆိုင်စာရင်းသွင်းရန် | အနီးအနားဝန်ဆောင်မှု</title>
 
+    <meta
+        name="description"
+        content="အနီးအနားဝန်ဆောင်မှုတွင် ဆိုင်နှင့်ဝန်ဆောင်မှု စာရင်းသွင်းရန်"
+    >
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/provider.css">
-<link rel="stylesheet" href="css/responsive.css">
+    <!-- ==============================
+         CSS
+    =============================== -->
 
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/provider.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css"
+    >
 
 </head>
 
@@ -21,351 +42,380 @@
 <body>
 
 
-<main class="provider-register-page">
+    <!-- ==============================
+         PROVIDER REGISTER PAGE
+    =============================== -->
 
+    <main class="provider-register-page">
 
-<section class="provider-register-card">
+        <section class="provider-register-card">
 
 
-<div class="provider-register-header">
+            <!-- ==========================
+                 HEADER
+            =========================== -->
 
+            <div class="provider-register-header">
 
-<div class="provider-register-icon">
-🏪
-</div>
+                <div class="provider-register-icon">
+                    🏪
+                </div>
 
+                <h1>
+                    ဆိုင်စာရင်းသွင်းရန်
+                </h1>
 
-<h1>
-ဆိုင်စာရင်းသွင်းရန်
-</h1>
+                <p>
+                    သင့်ဆိုင်ကို အနီးအနားဝန်ဆောင်မှုတွင်
+                    စာရင်းသွင်းပါ
+                </p>
 
+            </div>
 
-<p>
-သင့်ဆိုင်ကို အနီးအနားဝန်ဆောင်မှုတွင် စာရင်းသွင်းပါ
-</p>
 
+            <!-- ==========================
+                 NOTICE
+            =========================== -->
 
-</div>
+            <div class="provider-register-notice">
 
+                <strong>
+                    📋 အရေးကြီးပါသည်
+                </strong>
 
+                <p>
+                    စာရင်းသွင်းပြီးနောက် Admin မှ
+                    သင့်ဆိုင်အချက်အလက်များကို
+                    စစ်ဆေးအတည်ပြုပေးပါမည်။
+                </p>
 
+                <p>
+                    Admin အတည်ပြုပြီးမှသာ
+                    ဆိုင်ကို အများမြင်နိုင်မည်ဖြစ်ပါသည်။
+                </p>
 
-<div class="provider-register-notice">
+            </div>
 
-<strong>
-📋 အရေးကြီးပါသည်
-</strong>
 
+            <!-- ==========================
+                 REGISTER FORM
+            =========================== -->
 
-<p>
-စာရင်းသွင်းပြီးနောက် Admin မှ စစ်ဆေးပြီး
-အတည်ပြုပေးပါမည်။
-</p>
+            <form
+                id="providerRegisterForm"
+                novalidate
+            >
 
 
-</div>
+                <!-- ======================
+                     FULL NAME
+                ======================= -->
 
+                <div class="provider-form-group">
 
+                    <label for="providerFullName">
+                        ပိုင်ရှင်အမည်
+                    </label>
 
+                    <input
+                        type="text"
+                        id="providerFullName"
+                        name="fullName"
+                        placeholder="ပိုင်ရှင်အမည်ထည့်ပါ"
+                        autocomplete="name"
+                        required
+                    >
 
+                </div>
 
-<form id="providerRegisterForm">
 
+                <!-- ======================
+                     SHOP NAME
+                ======================= -->
 
+                <div class="provider-form-group">
 
-<div class="provider-form-group">
+                    <label for="providerShopName">
+                        ဆိုင်အမည်
+                    </label>
 
-<label>
-ပိုင်ရှင်အမည်
-</label>
+                    <input
+                        type="text"
+                        id="providerShopName"
+                        name="shopName"
+                        placeholder="ဥပမာ - ကိုအောင် ဖုန်းပြင်ဆိုင်"
+                        autocomplete="organization"
+                        required
+                    >
 
-<input
-type="text"
-id="providerFullName"
-placeholder="ပိုင်ရှင်အမည်ထည့်ပါ"
-required
->
+                </div>
 
-</div>
 
+                <!-- ======================
+                     PHONE
+                ======================= -->
 
+                <div class="provider-form-group">
 
+                    <label for="providerPhone">
+                        ဖုန်းနံပါတ်
+                    </label>
 
+                    <input
+                        type="tel"
+                        id="providerPhone"
+                        name="phone"
+                        placeholder="09xxxxxxxxx"
+                        autocomplete="tel"
+                        inputmode="tel"
+                        required
+                    >
 
-<div class="provider-form-group">
+                </div>
 
-<label>
-ဆိုင်အမည်
-</label>
 
-<input
-type="text"
-id="providerShopName"
-placeholder="ဆိုင်အမည်ထည့်ပါ"
-required
->
+                <!-- ======================
+                     EMAIL
+                ======================= -->
 
-</div>
+                <div class="provider-form-group">
 
+                    <label for="providerEmail">
+                        Email
+                    </label>
 
+                    <input
+                        type="email"
+                        id="providerEmail"
+                        name="email"
+                        placeholder="example@gmail.com"
+                        autocomplete="email"
+                        inputmode="email"
+                        required
+                    >
 
+                    <small>
+                        Login ဝင်ရာတွင် ဒီ Email ကို အသုံးပြုရပါမည်။
+                    </small>
 
+                </div>
 
-<div class="provider-form-group">
 
-<label>
-ဖုန်းနံပါတ်
-</label>
+                <!-- ======================
+                     CATEGORY
+                ======================= -->
 
-<input
-type="tel"
-id="providerPhone"
-placeholder="09xxxxxxxxx"
-required
->
+                <div class="provider-form-group">
 
-</div>
+                    <label for="providerCategory">
+                        ဝန်ဆောင်မှုအမျိုးအစား
+                    </label>
 
+                    <select
+                        id="providerCategory"
+                        name="category"
+                        required
+                    >
 
+                        <option value="">
+                            အမျိုးအစားရွေးပါ
+                        </option>
 
+                        <option value="phone">
+                            📱 ဖုန်းပြင်ဆိုင်
+                        </option>
 
+                        <option value="computer">
+                            💻 ကွန်ပျူတာဝန်ဆောင်မှု
+                        </option>
 
-<div class="provider-form-group">
+                        <option value="motorcycle">
+                            🛵 ဆိုင်ကယ်ပြင်ဆိုင်
+                        </option>
 
-<label>
-Email
-</label>
+                        <option value="car">
+                            🚗 ကားပြင်ဆိုင်
+                        </option>
 
-<input
-type="email"
-id="providerEmail"
-placeholder="example@gmail.com"
-required
->
+                        <option value="aircon">
+                            ❄️ အဲကွန်းဝန်ဆောင်မှု
+                        </option>
 
-</div>
+                        <option value="electrical">
+                            ⚡ လျှပ်စစ်ဝန်ဆောင်မှု
+                        </option>
 
+                        <option value="plumbing">
+                            🚰 ရေပိုက်/ပိုက်ပြင်
+                        </option>
 
+                        <option value="home">
+                            🏠 အိမ်ပြုပြင်
+                        </option>
 
+                        <option value="other">
+                            🛠️ အခြားဝန်ဆောင်မှု
+                        </option>
 
+                    </select>
 
-<div class="provider-form-group">
+                </div>
 
 
-<label>
-ဝန်ဆောင်မှုအမျိုးအစား
-</label>
+                <!-- ======================
+                     ADDRESS
+                ======================= -->
 
+                <div class="provider-form-group">
 
-<select id="providerCategory" required>
+                    <label for="providerAddress">
+                        ဆိုင်လိပ်စာ
+                    </label>
 
+                    <textarea
+                        id="providerAddress"
+                        name="address"
+                        rows="4"
+                        placeholder="ဆိုင်တည်ရှိရာ လိပ်စာထည့်ပါ"
+                        required
+                    ></textarea>
 
-<option value="">
-အမျိုးအစားရွေးပါ
-</option>
+                </div>
 
 
-<option value="phone">
-📱 ဖုန်းပြင်ဆိုင်
-</option>
+                <!-- ======================
+                     PASSWORD
+                ======================= -->
 
+                <div class="provider-form-group">
 
-<option value="computer">
-💻 ကွန်ပျူတာ
-</option>
+                    <label for="providerPassword">
+                        Password
+                    </label>
 
+                    <input
+                        type="password"
+                        id="providerPassword"
+                        name="password"
+                        placeholder="အနည်းဆုံး 6 လုံး"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
 
-<option value="motorcycle">
-🛵 ဆိုင်ကယ်ပြင်
-</option>
+                </div>
 
 
-<option value="car">
-🚗 ကားပြင်
-</option>
+                <!-- ======================
+                     CONFIRM PASSWORD
+                ======================= -->
 
+                <div class="provider-form-group">
 
-<option value="aircon">
-❄️ အဲကွန်း
-</option>
+                    <label for="providerConfirmPassword">
+                        Password ပြန်ထည့်ပါ
+                    </label>
 
+                    <input
+                        type="password"
+                        id="providerConfirmPassword"
+                        name="confirmPassword"
+                        placeholder="Password ပြန်ထည့်ပါ"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
 
-<option value="electrical">
-⚡ လျှပ်စစ်
-</option>
+                </div>
 
 
-<option value="plumbing">
-🚰 ရေပိုက်
-</option>
+                <!-- ======================
+                     SUBMIT BUTTON
+                ======================= -->
 
+                <button
+                    type="submit"
+                    id="providerRegisterBtn"
+                    class="provider-register-submit"
+                >
+                    🏪 ဆိုင်စာရင်းသွင်းမယ်
+                </button>
 
-<option value="other">
-🛠️ အခြား
-</option>
 
+            </form>
 
-</select>
 
+            <!-- ==========================
+                 RESULT MESSAGE
+            =========================== -->
 
-</div>
+            <div
+                id="providerRegisterMessage"
+                class="provider-auth-message"
+                role="alert"
+                aria-live="polite"
+            ></div>
 
 
+            <!-- ==========================
+                 LOGIN LINK
+            =========================== -->
 
+            <div class="provider-login-link">
 
+                <span>
+                    အကောင့်ရှိပြီးသားလား?
+                </span>
 
+                <a href="login.html">
+                    ဆိုင်သမားဝင်ရန်
+                </a>
 
-<div class="provider-form-group">
+            </div>
 
 
-<label>
-ဆိုင်လိပ်စာ
-</label>
+            <!-- ==========================
+                 HOME
+            =========================== -->
 
+            <a
+                href="index.html"
+                class="provider-back-home"
+            >
+                ← ပင်မစာမျက်နှာသို့ ပြန်မယ်
+            </a>
 
-<textarea
-id="providerAddress"
-rows="4"
-placeholder="ဆိုင်တည်ရှိရာ လိပ်စာ"
-required
-></textarea>
 
+        </section>
 
-</div>
+    </main>
 
 
+    <!-- ==============================
+         SUPABASE
+    =============================== -->
 
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
 
 
+    <!-- ==============================
+         AUTH CONFIG
+         ဒီဖိုင်ထဲမှာ supabaseClient
+         သတ်မှတ်ထားရပါမယ်
+    =============================== -->
 
-<div class="provider-form-group">
+    <script src="js/auth.js"></script>
 
 
-<label>
-Password
-</label>
+    <!-- ==============================
+         PROVIDER REGISTER
+    =============================== -->
 
-
-<input
-type="password"
-id="providerPassword"
-placeholder="အနည်းဆုံး 6 လုံး"
-required
->
-
-
-</div>
-
-
-
-
-
-
-<div class="provider-form-group">
-
-
-<label>
-Password ပြန်ထည့်ပါ
-</label>
-
-
-<input
-type="password"
-id="providerConfirmPassword"
-placeholder="Password ပြန်ထည့်ပါ"
-required
->
-
-
-</div>
-
-
-
-
-
-
-
-<button
-type="submit"
-id="providerRegisterBtn"
-class="provider-register-submit"
->
-
-🏪 ဆိုင်စာရင်းသွင်းမယ်
-
-</button>
-
-
-
-
-
-</form>
-
-
-
-
-
-<div
-id="providerRegisterMessage"
-class="provider-auth-message"
->
-
-</div>
-
-
-
-
-
-
-
-<div class="provider-login-link">
-
-အကောင့်ရှိပြီးသားလား?
-
-<a href="login.html">
-ဆိုင်သမားဝင်ရန်
-</a>
-
-
-</div>
-
-
-
-
-
-<a
-href="index.html"
-class="provider-back-home"
->
-
-← ပင်မစာမျက်နှာသို့ ပြန်မယ်
-
-</a>
-
-
-
-
-</section>
-
-
-</main>
-
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<script src="js/auth.js"></script>
-
-
-<script src="js/provider.js"></script>
-
+    <script src="js/provider.js"></script>
 
 
 </body>
 
-
-    </html>
+</html>
