@@ -1,132 +1,201 @@
 <!DOCTYPE html>
 <html lang="my">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>ဆိုင်သမားဝင်ရန် | အနီးအနားဝန်ဆောင်မှု</title>
 
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
-    <!-- Provider CSS -->
-    <link rel="stylesheet" href="css/provider.css">
+    <link
+        rel="stylesheet"
+        href="css/provider.css"
+    >
 
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link
+        rel="stylesheet"
+        href="css/responsive.css"
+    >
+
 </head>
+
 
 <body>
 
-    <main class="provider-auth-page">
 
-        <section class="provider-auth-card">
+<main class="provider-auth-page">
 
-            <!-- Logo -->
-            <div class="provider-auth-logo">
 
-                <div class="provider-logo-icon">
-                    🏪
-                </div>
+    <section class="provider-auth-card">
 
-                <h1>
-                    ဆိုင်သမားဝင်ရန်
-                </h1>
 
-                <p>
-                    သင့်ဆိုင်ကို စီမံခန့်ခွဲရန် ဝင်ရောက်ပါ
-                </p>
+        <!-- =================================
+             HEADER
+        ================================== -->
 
+        <div class="provider-auth-logo">
+
+            <div class="provider-logo-icon">
+                🏪
             </div>
 
+            <h1>
+                ဆိုင်သမားဝင်ရန်
+            </h1>
 
-            <!-- Login Form -->
-            <form id="providerLoginForm">
+            <p>
+                သင့်ဆိုင်ကို စီမံခန့်ခွဲရန် ဝင်ရောက်ပါ
+            </p>
 
-                <div class="provider-form-group">
-
-                    <label for="providerEmail">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="providerEmail"
-                        placeholder="ဆိုင် Email ထည့်ပါ"
-                        autocomplete="email"
-                        required
-                    >
-
-                </div>
+        </div>
 
 
-                <div class="provider-form-group">
+        <!-- =================================
+             LOGIN FORM
+        ================================== -->
 
-                    <label for="providerPassword">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="providerPassword"
-                        placeholder="Password ထည့်ပါ"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                </div>
+        <form id="providerLoginForm">
 
 
-                <button
-                    type="submit"
-                    id="providerLoginBtn"
-                    class="provider-login-btn"
+            <!-- EMAIL -->
+
+            <div class="provider-form-group">
+
+                <label for="providerEmail">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="providerEmail"
+                    placeholder="ဆိုင် Email ထည့်ပါ"
+                    autocomplete="email"
+                    required
                 >
-                    <span>ဝင်မယ်</span>
-                </button>
-
-            </form>
-
-
-            <!-- Message -->
-            <div
-                id="providerLoginMessage"
-                class="provider-auth-message"
-                role="alert"
-            ></div>
-
-            <!-- Register -->
-            <div class="provider-register-box">
-
-                <p>
-                    သင့်ဆိုင်ကို ဒီ Platform မှာ တင်ချင်ပါသလား?
-                </p>
-
-                <a href="provider-register.html">
-                    🏪 ဆိုင်စာရင်းသွင်းရန်
-                </a>
 
             </div>
 
 
-            <!-- Back Home -->
-            <a
-                href="index.html"
-                class="provider-back-home"
+            <!-- PASSWORD -->
+
+            <div class="provider-form-group">
+
+                <label for="providerPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="providerPassword"
+                    placeholder="Password ထည့်ပါ"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                id="providerLoginBtn"
+                class="provider-login-btn"
             >
-                ← ပင်မစာမျက်နှာသို့ ပြန်မယ်
+
+                <span>
+                    ဝင်မယ်
+                </span>
+
+            </button>
+
+
+        </form>
+
+
+        <!-- =================================
+             MESSAGE
+        ================================== -->
+
+        <div
+            id="providerLoginMessage"
+            class="provider-auth-message"
+            role="alert"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- =================================
+             REGISTER
+        ================================== -->
+
+        <div class="provider-register-box">
+
+            <p>
+                သင့်ဆိုင်ကို ဒီ Platform မှာ တင်ချင်ပါသလား?
+            </p>
+
+            <a href="provider-register.html">
+
+                🏪 ဆိုင်စာရင်းသွင်းရန်
+
             </a>
 
-        </section>
-
-    </main>
+        </div>
 
 
-    <!-- Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <!-- =================================
+             BACK HOME
+        ================================== -->
 
-    <!-- Auth -->
-    <script src="js/auth.js"></script>
+        <a
+            href="index.html"
+            class="provider-back-home"
+        >
+
+            ← ပင်မစာမျက်နှာသို့ ပြန်မယ်
+
+        </a>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =================================
+     SUPABASE
+================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- =================================
+     AUTH CONFIG
+================================= -->
+
+<script src="js/auth.js"></script>
+
+
+<!-- =================================
+     PROVIDER LOGIN
+================================= -->
+
 <script src="js/provider-login.js"></script>
+
+
 </body>
+
 </html>
