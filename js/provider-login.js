@@ -13,9 +13,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const messageBox =
         document.getElementById("providerLoginMessage");
 
-    const logoutBtn =
-        document.getElementById("logoutBtn");
-
 
     // ========================================
     // SHOW MESSAGE
@@ -29,60 +26,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         messageBox.className =
             "provider-auth-message show " + type;
-    }
-
-
-    // ========================================
-    // CHECK CURRENT LOGIN
-    // ========================================
-
-    async function checkCurrentLogin() {
-
-        try {
-
-            const user =
-                await getCurrentUser();
-
-            if (user) {
-
-                // Login ဝင်ထားပြီး
-                if (logoutBtn) {
-                    logoutBtn.style.display = "block";
-                }
-
-                if (loginBtn) {
-                    loginBtn.style.display = "none";
-                }
-
-                if (messageBox) {
-                    showMessage(
-                        "✅ အကောင့်ဝင်ထားပြီးပါပြီ။",
-                        "success"
-                    );
-                }
-
-            } else {
-
-                // Login မဝင်ထားသေး
-                if (logoutBtn) {
-                    logoutBtn.style.display = "none";
-                }
-
-                if (loginBtn) {
-                    loginBtn.style.display = "block";
-                }
-
-            }
-
-        } catch (error) {
-
-            console.error(
-                "Login check error:",
-                error
-            );
-
-        }
-
     }
 
 
@@ -103,7 +46,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                     document
                         .getElementById("providerEmail")
                         .value
-                        .trim();
+                        .trim()
+                        .toLowerCase();
+
 
                 const password =
                     document
@@ -136,7 +81,16 @@ document.addEventListener("DOMContentLoaded", async function () {
                     "<span>⏳ ဝင်ရောက်နေပါသည်...</span>";
 
 
+                messageBox.className =
+                    "provider-auth-message";
+
+
                 try {
+
+
+                    // ==================================
+                    // SUPABASE LOGIN
+                    // ==================================
 
                     const {
                         data,
@@ -165,12 +119,152 @@ document.addEventListener("DOMContentLoaded", async function () {
                     }
 
 
+                    const user = data.user;
+
+
+                    // ==================================
+                    // GET PROVIDER PROFILE
+                    // ==================================
+
+                    const {
+                        data: profile,
+                        error: profileError
+                    } =
+                        await supabaseClient
+                            .from("profiles")
+                            .select(`
+                                id,
+                                full_name,
+                                phone,
+                                shop_name,
+                                category,
+                                address,
+                                role,
+                                status
+                            `)
+                            .eq("id", user.id)
+                            .maybeSingle();
+
+
+                    if (profileError) {
+
+                        console.error(
+                            "Profile error:",
+                            profileError
+                        );
+
+                        // Login session ကို ပြန်ပိတ်
+                        await supabaseClient.auth.signOut();
+
+                        throw new Error(
+                            "အကောင့်အချက်အလက်ကို ရှာမတွေ့ပါ။"
+                        );
+                    }
+
+
+                    if (!profile) {
+
+                        await supabaseClient.auth.signOut();
+
+                        throw new Error(
+                            "ဆိုင်အကောင့်အချက်အလက် မတွေ့ပါ။"
+                        );
+                    }
+
+
+                    // ==================================
+                    // CHECK ROLE
+                    // ==================================
+
+                    if (profile.role !== "provider") {
+
+                        await supabaseClient.auth.signOut();
+
+                        throw new Error(
+                            "ဒီအကောင့်သည် ဆိုင်ပိုင်ရှင်အကောင့် မဟုတ်ပါ။"
+                        );
+                    }
+
+
+                    // ==================================
+                    // CHECK ADMIN APPROVAL
+                    // ==================================
+
+                    const status =
+                        String(
+                            profile.status || ""
+                        ).toLowerCase();
+
+
+                    // PENDING
+                    if (status === "pending") {
+
+                        await supabaseClient.auth.signOut();
+
+                        showMessage(
+                            "⏳ သင့်ဆိုင်အကောင့်ကို Admin မှ စစ်ဆေးနေဆဲဖြစ်ပါတယ်။ အတည်ပြုပြီးမှ Login ဝင်နိုင်ပါမယ်။",
+                            "error"
+                        );
+
+                        loginBtn.disabled = false;
+
+                        loginBtn.innerHTML =
+                            "<span>ဝင်မယ်</span>";
+
+                        return;
+                    }
+
+
+                    // REJECTED
+                    if (
+                        status === "rejected" ||
+                        status === "declined"
+                    ) {
+
+                        await supabaseClient.auth.signOut();
+
+                        showMessage(
+                            "❌ သင့်ဆိုင်စာရင်းကို Admin မှ အတည်မပြုသေးပါ။ Admin ထံ ဆက်သွယ်စစ်ဆေးပေးပါ။",
+                            "error"
+                        );
+
+                        loginBtn.disabled = false;
+
+                        loginBtn.innerHTML =
+                            "<span>ဝင်မယ်</span>";
+
+                        return;
+                    }
+
+
+                    // ==================================
+                    // APPROVED
+                    // ==================================
+
+                    if (status !== "approved") {
+
+                        await supabaseClient.auth.signOut();
+
+                        showMessage(
+                            "⏳ သင့်အကောင့်အခြေအနေကို Admin မှ စစ်ဆေးနေဆဲဖြစ်ပါတယ်။",
+                            "error"
+                        );
+
+                        loginBtn.disabled = false;
+
+                        loginBtn.innerHTML =
+                            "<span>ဝင်မယ်</span>";
+
+                        return;
+                    }
+
+
                     // ==================================
                     // LOGIN SUCCESS
                     // ==================================
 
                     showMessage(
-                        "✅ Login အောင်မြင်ပါပြီ။",
+                        "✅ Login အောင်မြင်ပါပြီ။ ခဏစောင့်ပါ...",
                         "success"
                     );
 
@@ -179,23 +273,25 @@ document.addEventListener("DOMContentLoaded", async function () {
                         "<span>✅ ဝင်ရောက်ပြီးပါပြီ</span>";
 
 
-                    loginBtn.style.display =
-                        "none";
+                    // ==================================
+                    // GO TO PROVIDER DASHBOARD
+                    // ==================================
 
+                    setTimeout(
+                        function () {
 
-                    // Logout ပေါ်လာမယ်
-                    if (logoutBtn) {
+                            window.location.href =
+                                "provider-dashboard.html";
 
-                        logoutBtn.style.display =
-                            "block";
-
-                    }
+                        },
+                        800
+                    );
 
 
                 } catch (error) {
 
                     console.error(
-                        "Provider login error:",
+                        "Provider Login Error:",
                         error
                     );
 
@@ -208,6 +304,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                     const lower =
                         message.toLowerCase();
 
+
+                    // ==================================
+                    // FRIENDLY ERRORS
+                    // ==================================
 
                     if (
                         lower.includes(
@@ -238,7 +338,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     ) {
 
                         message =
-                            "⏳ Login ကြိုးစားမှုများလွန်းပါသည်။ ခဏစောင့်ပြီး ပြန်ကြိုးစားပါ။";
+                            "⏳ Login ကြိုးစားမှုများလွန်းပါတယ်။ ခဏစောင့်ပြီး ပြန်ကြိုးစားပါ။";
 
                     }
 
@@ -261,95 +361,5 @@ document.addEventListener("DOMContentLoaded", async function () {
         );
 
     }
-
-
-    // ========================================
-    // LOGOUT
-    // ========================================
-
-    if (logoutBtn) {
-
-        logoutBtn.addEventListener(
-            "click",
-            async function () {
-
-                logoutBtn.disabled =
-                    true;
-
-                logoutBtn.textContent =
-                    "⏳ အကောင့်ထွက်နေပါသည်...";
-
-
-                try {
-
-                    await supabaseClient.auth.signOut();
-
-
-                    // Logout ပြီးရင်
-                    // Logout button ပျောက်
-                    logoutBtn.style.display =
-                        "none";
-
-
-                    // Login button ပြန်ပေါ်
-                    if (loginBtn) {
-
-                        loginBtn.style.display =
-                            "block";
-
-                        loginBtn.disabled =
-                            false;
-
-                        loginBtn.innerHTML =
-                            "<span>ဝင်မယ်</span>";
-
-                    }
-
-
-                    // Form ပြန်ရှင်း
-                    if (loginForm) {
-                        loginForm.reset();
-                    }
-
-
-                    showMessage(
-                        "✅ အကောင့်ထွက်ပြီးပါပြီ။",
-                        "success"
-                    );
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
-
-
-                    logoutBtn.disabled =
-                        false;
-
-                    logoutBtn.textContent =
-                        "🚪 အကောင့်ထွက်မယ်";
-
-
-                    showMessage(
-                        "❌ အကောင့်ထွက်ရာတွင် ပြဿနာရှိနေပါသည်။",
-                        "error"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    // ========================================
-    // INITIAL CHECK
-    // ========================================
-
-    await checkCurrentLogin();
 
 });
