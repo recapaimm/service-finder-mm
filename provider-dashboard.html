@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ကျွန်ုပ်၏ဆိုင် | အနီးအနားဝန်ဆောင်မှု</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/provider.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css"
+    >
+
+    <style>
+
+        .provider-dashboard-page {
+            min-height: 100vh;
+            padding: 25px 15px;
+        }
+
+        .provider-dashboard-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .provider-dashboard-header {
+            background: #2563eb;
+            color: white;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.18);
+        }
+
+        .provider-dashboard-header h1 {
+            margin: 0 0 8px;
+            font-size: 25px;
+        }
+
+        .provider-dashboard-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .provider-profile-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 25px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .provider-profile-title {
+            font-size: 21px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #172033;
+        }
+
+        .provider-profile-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eaecf0;
+        }
+
+        .provider-profile-item:last-child {
+            border-bottom: none;
+        }
+
+        .provider-profile-label {
+            font-size: 13px;
+            color: #667085;
+            margin-bottom: 5px;
+        }
+
+        .provider-profile-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #172033;
+            word-break: break-word;
+        }
+
+        .provider-status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #ecfdf3;
+            color: #027a48;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .provider-logout-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 13px;
+            background: #dc2626;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .provider-logout-btn:hover {
+            background: #b91c1c;
+        }
+
+        .provider-logout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .provider-dashboard-message {
+            display: none;
+            margin-bottom: 18px;
+            padding: 14px;
+            border-radius: 12px;
+            line-height: 1.6;
+        }
+
+        .provider-dashboard-message.show {
+            display: block;
+        }
+
+        .provider-dashboard-message.error {
+            background: #fef3f2;
+            color: #b42318;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<main class="provider-dashboard-page">
+
+    <div class="provider-dashboard-container">
+
+
+        <!-- HEADER -->
+
+        <div class="provider-dashboard-header">
+
+            <h1>
+                🏪 ကျွန်ုပ်၏ဆိုင်
+            </h1>
+
+            <p>
+                ဆိုင်ပိုင်ရှင်အကောင့်
+            </p>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="dashboardMessage"
+            class="provider-dashboard-message"
+        ></div>
+
+
+        <!-- PROFILE -->
+
+        <section class="provider-profile-card">
+
+            <div class="provider-profile-title">
+                👤 ကျွန်ုပ်၏အချက်အလက်
+            </div>
+
+
+            <!-- OWNER -->
+
+            <div class="provider-profile-item">
+
+                <div class="provider-profile-label">
+                    ပိုင်ရှင်အမည်
+                </div>
+
+                <div
+                    id="profileFullName"
+                    class="provider-profile-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- SHOP -->
+
+            <div class="provider-profile-item">
+
+                <div class="provider-profile-label">
+                    ဆိုင်အမည်
+                </div>
+
+                <div
+                    id="profileShopName"
+                    class="provider-profile-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="provider-profile-item">
+
+                <div class="provider-profile-label">
+                    ဖုန်းနံပါတ်
+                </div>
+
+                <div
+                    id="profilePhone"
+                    class="provider-profile-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="provider-profile-item">
+
+                <div class="provider-profile-label">
+                    Email
+                </div>
+
+                <div
+                    id="profileEmail"
+                    class="provider-profile-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="provider-profile-item">
+
+                <div class="provider-profile-label">
+                    ဝန်ဆောင်မှုအမျိုးအစား
+                </div>
+
+                <div
+                    id="profileCategory"
+                    class="provider-profile-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div class="provider-profile-item">
+
+                <div class="provider-profile-label">
+                    ဆိုင်လိပ်စာ
+                </div>
+
+                <div
+                    id="profileAddress"
+                    class="provider-profile-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="provider-profile-item">
+
+                <div class="provider-profile-label">
+                    အကောင့်အခြေအနေ
+                </div>
+
+                <div
+                    id="profileStatus"
+                    class="provider-profile-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- LOGOUT -->
+
+            <button
+                type="button"
+                id="providerLogoutBtn"
+                class="provider-logout-btn"
+            >
+
+                🚪 အကောင့်ထွက်မယ်
+
+            </button>
+
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- AUTH -->
+
+<script src="js/auth.js"></script>
+
+
+<!-- DASHBOARD -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+
+        const message =
+            document.getElementById(
+                "dashboardMessage"
+            );
+
+
+        const logoutBtn =
+            document.getElementById(
+                "providerLogoutBtn"
+            );
+
+
+        function showError(text) {
+
+            message.textContent = text;
+
+            message.className =
+                "provider-dashboard-message show error";
+
+        }
+
+
+        // ========================================
+        // GET CURRENT USER
+        // ========================================
+
+        const {
+            data: {
+                user
+            }
+        } =
+        await supabaseClient.auth.getUser();
+
+
+        if (!user) {
+
+            window.location.href =
+                "provider-login.html";
+
+            return;
+
+        }
+
+
+        // ========================================
+        // GET PROFILE
+        // ========================================
+
+        const {
+            data: profile,
+            error
+        } =
+        await supabaseClient
+            .from("profiles")
+            .select(
+                "id, full_name, phone, role, status, shop_name, category, address"
+            )
+            .eq("id", user.id)
+            .single();
+
+
+        if (error || !profile) {
+
+            console.error(
+                "Profile error:",
+                error
+            );
+
+            await supabaseClient.auth.signOut();
+
+            showError(
+                "❌ အကောင့်အချက်အလက် မတွေ့ပါ။"
+            );
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "provider-login.html";
+
+                },
+                2000
+            );
+
+            return;
+
+        }
+
+
+        // ========================================
+        // CHECK PROVIDER
+        // ========================================
+
+        if (profile.role !== "provider") {
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href =
+                "provider-login.html";
+
+            return;
+
+        }
+
+
+        // ========================================
+        // CHECK APPROVED
+        // ========================================
+
+        if (profile.status !== "approved") {
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href =
+                "provider-login.html";
+
+            return;
+
+        }
+
+
+        // ========================================
+        // SHOW PROFILE
+        // ========================================
+
+        document.getElementById(
+            "profileFullName"
+        ).textContent =
+            profile.full_name || "-";
+
+
+        document.getElementById(
+            "profileShopName"
+        ).textContent =
+            profile.shop_name || "-";
+
+
+        document.getElementById(
+            "profilePhone"
+        ).textContent =
+            profile.phone || "-";
+
+
+        document.getElementById(
+            "profileEmail"
+        ).textContent =
+            user.email || "-";
+
+
+        document.getElementById(
+            "profileCategory"
+        ).textContent =
+            profile.category || "-";
+
+
+        document.getElementById(
+            "profileAddress"
+        ).textContent =
+            profile.address || "-";
+
+
+        document.getElementById(
+            "profileStatus"
+        ).innerHTML =
+            '<span class="provider-status">✅ အတည်ပြုပြီး</span>';
+
+
+        // ========================================
+        // LOGOUT
+        // ========================================
+
+        logoutBtn.addEventListener(
+            "click",
+            async function () {
+
+                logoutBtn.disabled = true;
+
+                logoutBtn.textContent =
+                    "⏳ အကောင့်ထွက်နေပါသည်...";
+
+
+                const {
+                    error
+                } =
+                await supabaseClient.auth.signOut();
+
+
+                if (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                    logoutBtn.disabled = false;
+
+                    logoutBtn.textContent =
+                        "🚪 အကောင့်ထွက်မယ်";
+
+                    showError(
+                        "❌ Logout လုပ်၍မရပါ။ ပြန်ကြိုးစားပါ။"
+                    );
+
+                    return;
+
+                }
+
+
+                window.location.href =
+                    "provider-login.html";
+
+            }
+        );
+
+
+    }
+);
+
+</script>
+
+
+</body>
+
+  </html>
